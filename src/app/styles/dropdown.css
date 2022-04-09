@@ -1,0 +1,45 @@
+
+.dropdown
+{
+    position: relative;
+}
+
+.dropdown .dropdown-icon
+{
+    margin-left: 10px;
+}
+
+.dropdown .dropdown-content
+{
+    position: absolute;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 1em;
+
+    background-color: #360066;
+
+    white-space: nowrap;
+}
+
+.dropdown .dropdown-content.right-sided
+{
+    right: 0;
+}
+
+
+.dropdown-content a
+{
+    font: inherit;
+    text-decoration: none;
+    color: inherit;
+
+    appearance: none;
+    cursor: pointer;
+}
+
+.dropdown-content > *:not(:last-child)
+{
+    margin-bottom: 1.3em;
+}

@@ -1,0 +1,23 @@
+@import "header.css";
+@import "dropdown.css";
+
+body {
+  margin: 0;
+  font-family: 'Sunflower', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --main-content-area: 1148px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.main-content-area
+{
+  width: var(--main-content-area);
+  margin: 0 auto;
+}
+

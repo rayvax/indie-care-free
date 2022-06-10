@@ -3,52 +3,79 @@
 header
 {
     width: 100%;
-    background-color: #210052;
     color: white;
+
+    padding-bottom: 1em;
 
     font-size: 24px;
 }
 
-.header-container
+.main-header
 {
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+    position: relative;
+    display: grid;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-items: center;
+    grid-template-areas:
+            "logo navigation profile"
+            "searchbar searchbar searchbar";
+    grid-template-columns: auto 1fr auto;
+}
+
+
+.main-header::before /* Background */
+{
+    content: "";
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -50vw;
+    right: -50vw;
+
+    z-index: -1;
+    background-color: #210052;
 }
 
 .main-header .logo
 {
-    margin-right: 2.2em;
+    grid-area: logo;
+    margin: auto 0;
 }
 
+
+.main-header .profile-area
+{
+    grid-area: profile;
+    margin: auto 0;
+}
+
+.main-header .search-bar
+{
+    grid-area: searchbar;
+}
+
+
+/*#region Main navigation */
 .main-header nav
+{
+    grid-area: navigation;
+    margin: auto 0;
+}
+
+.main-header nav ul
 {
     display: flex;
     flex-direction: row;
+
+    list-style-type: none;
 }
 
-.main-header nav > *
+.main-header nav ul > li
 {
     margin-right: 2.2em;
 }
 
-.main-header nav button
-{
-    font: inherit;
-    color: inherit;
-
-    appearance: none;
-    cursor: pointer;
-
-    background: transparent;
-    border: none;
-}
-
-.main-header nav > a
+.main-header nav ul li > a
 {
     font: inherit;
     text-decoration: none;
@@ -58,16 +85,44 @@ header
     cursor: pointer;
 }
 
+/*#endregion */
 
+/*#region Header profile area */
 .main-header .profile-area
 {
-    margin-left: auto;
     display: flex;
     flex-direction: row;
+    margin-left: auto;
 }
 
 .main-header .profile-area .avatar
 {
     width: 35px;
     height: 35px;
+    margin-right: 0.2em;
 }
+
+.profile-area > ul,
+.profile-area > div
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-area > ul
+{
+    list-style-type: none;
+}
+
+.profile-area ul > li:not(:last-child)
+{
+    margin-right: 1em;
+}
+
+.profile-area ul > li > a
+{
+    color: currentColor;
+    text-decoration: none;
+}
+
+/*#endregion */

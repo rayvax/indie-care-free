@@ -1,23 +1,113 @@
 @import "header.css";
 @import "dropdown.css";
+@import "buttons.css";
 
-body {
-  margin: 0;
-  font-family: 'Sunflower', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+body
+{
+    overflow-x: hidden;
+    overflow-y: scroll;
 
-  --main-content-area: 1148px;
+    --main-content-area: 1148px;
+    max-width: var(--main-content-area);
+    margin: 0 auto;
+
+    font-family: 'Sunflower', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    font-size: 20px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+code
+{
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
 .main-content-area
 {
-  width: var(--main-content-area);
-  margin: 0 auto;
+    width: var(--main-content-area);
+    margin: 0 auto;
 }
 
+/* #region Anchor */
+.icf-anchor
+{
+    color: #FF3B89;
+}
+
+.icf-anchor:visited
+{
+    color: #DD2890;
+    opacity: 50%;
+}
+/* #endregion */
+
+/* #region Checkbox */
+.icf-checkbox
+{
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+.icf-checkbox + label
+{
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+}
+.icf-checkbox + label::before
+{
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 2px solid #FF3B89;
+    border-radius: 0.25em;
+    margin-right: 0.5em;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+}
+
+.icf-checkbox:checked + label::before {
+    background-color: #FF3B89;
+    background-image: url("../../../public/icons/tick-white.svg");
+    background-size: 0.7em;
+  }
+
+/* #endregion */
+
+/* #region Tag */
+.icf-tag-list
+{
+    list-style: none;
+    display: flex;
+    gap: 1em;
+}
+
+.icf-tag
+{
+    font-size: 14px;
+
+    color: rgba(82, 8, 125);
+    background-color: rgba(82, 8, 125, 0.3);
+
+    padding: 0.45em 0.75em;
+
+    border-radius: 1em;
+}
+
+.icf-tag > *
+{
+    margin-right: 0.5em;
+}
+/* #endregion */
+
+/* #region  */
+/* #endregion */
+
+/* #region  */
+/* #endregion */

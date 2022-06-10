@@ -1,0 +1,90 @@
+
+/* #region Primary/Secondary buttons */
+button.icf-primary-button, button.icf-secondary-button
+{
+  font-family: inherit;
+  font-size: 20px;
+  padding: 10px 20px;
+}
+
+button.icf-primary-button
+{
+  color: #fbfefb;
+
+  background-color: #FF3B89;
+  border: none;
+  border-radius: 36px;
+}
+
+button.icf-primary-button:hover
+{
+  background-color: #CA2E6C;
+}
+
+button.icf-primary-button:active
+{
+  background-color: #811C44;
+}
+
+button.icf-primary-button:disabled,
+button.icf-primary-button[disabled]
+{
+  background-color: #FF3B89;
+  opacity: 40%;
+}
+
+button.icf-secondary-button
+{
+  color: #FF3B89;
+
+  border: 1px solid #FF3B89;
+  border-radius: 36px;
+  background: none;
+}
+
+button.icf-secondary-button:hover
+{
+  background-color: rgba(255, 59, 137, 0.1);
+}
+
+button.icf-secondary-button:active
+{
+  background-color: rgba(255, 59, 137, 0.4);
+}
+
+button.icf-secondary-button:disabled,
+button.icf-secondary-button[disabled]
+{
+  opacity: 40%;
+}
+/* #endregion */
+
+/* #region Arrow button */
+button.icf-arrow-button
+{
+  border: none;
+  background: none;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
+
+button.icf-arrow-button.filled
+{
+  background: #FF3B89;
+  border-radius: 50%;
+}
+
+button.icf-arrow-button.filled.right
+{
+  padding: 11px 13px 10px 15px;
+}
+
+button.icf-arrow-button.filled.left
+{
+  padding: 11px 15px 10px 13px;
+}
+
+/* #endregion */

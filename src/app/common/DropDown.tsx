@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 interface Props
 {
@@ -13,26 +13,28 @@ interface Props
 export interface DropDownOption
 {
     title: string;
-    href: string;
+    href?: string;
+    onClick?: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
 }
 
-export default function DropDown({title, options, initiallyOpened, iconPath, rightSided}: Props)
+export default function DropDown({ title, options, initiallyOpened, iconPath, rightSided }: Props)
 {
-    const [isOpen, setIsOpen] = useState(initiallyOpened)
+    const [isOpen, setIsOpen] = useState(initiallyOpened);
 
     return (
-        <div className={"dropdown"}>
-            <button onClick={() => setIsOpen(!isOpen)}>
-                {title}
-                {iconPath && <img src={iconPath} alt={"dropdown-icon"} className={"dropdown-icon"}/>}
+        <div className={ "dropdown" }>
+            <button onClick={ () => setIsOpen(!isOpen) }>
+                { title }
+                { iconPath && <img src={ iconPath } alt={ "down arrow" } className={ "dropdown-icon" } /> }
             </button>
-            {isOpen &&
-                <div className={"dropdown-content" + (rightSided ? " right-sided" : "")} >
-                    {options.map(opt => {
-                        return <a href={opt.href}>{opt.title}</a>
-                    })}
-                </div>
+            { isOpen &&
+                <ul className={ "dropdown-content" + (rightSided ? " right-sided" : "") }>
+                    { options.map(opt =>
+                    {
+                        return <li><a href={ opt.href } onClick={ opt.onClick }>{ opt.title }</a></li>;
+                    }) }
+                </ul>
             }
         </div>
-    )
+    );
 }

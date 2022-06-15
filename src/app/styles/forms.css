@@ -1,0 +1,80 @@
+.icf-label
+{
+    font-family: inherit;
+    font-size: 14px;
+
+    color: #52087d;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin: 20px 0;
+}
+
+.icf-input,
+.icf-text-area
+{
+    font-family: inherit;
+    font-size: 20px;
+}
+
+.icf-input
+{
+    padding: 5px 0 5px 20px;
+    
+    color: #0d0020;
+
+    border-radius: 0.5em;
+    border: 1px solid #52087d;
+}
+
+.icf-text-area:focus-visible, .icf-input:focus-visible
+{
+    outline: 2px solid #52087d;
+}
+
+.icf-text-area
+{
+    box-sizing: border-box;
+    resize: none;
+
+    padding: 20px 40px 20px 20px;
+    
+    color: #0d0020;
+
+    border-color: #52087d;
+}
+
+@supports selector(::-webkit-scrollbar)
+{
+    .icf-text-area
+    {
+        border-radius: 5px;
+    }
+
+    .icf-text-area::-webkit-scrollbar 
+    {
+        width: 9px;
+        background-color: rgba(82, 8, 125, 0.3);
+        border-radius: 10px; 
+    }
+      
+    .icf-text-area::-webkit-scrollbar-thumb 
+    {
+        border-radius: 10px;
+        background-color: rgba(82, 8, 125, 1);
+    }
+}
+
+@supports (not selector(::-webkit-scrollbar))
+{
+    .icf-text-area
+    {
+        scrollbar-color: rgba(82, 8, 125, 1) rgba(82, 8, 125, 0.3);
+
+        scrollbar-face-color: rgba(82, 8, 125, 1);
+        scrollbar-base-color: rgba(82, 8, 125, 0.3);
+    }
+}

@@ -1,18 +1,40 @@
 .search-bar
 {
-    width: 100%;
-    box-sizing: border-box;
+    position: relative;
 
     display: flex;
     align-items: center;
 
-    border-radius: 35px;
-    padding: 0.4em 0.4em 0.4em 0.625em;
-
-    background-color: #360066;
 }
 
-.search-bar .search-icon
+.search-bar > a.search-icon
 {
-    margin-right: 0.5em;
+    font-size: 0;
+
+    position: absolute;
+    left: 10px;
+}
+
+.search-bar > input
+{
+    flex-grow: 1;
+    
+    width: 100%;
+    box-sizing: border-box;
+    
+    font-size: 20px;
+    font-family: inherit;
+    color: #fbfefb;
+
+    border-radius: 35px;
+    border: none;
+    padding: 0.4em 0.75em 0.4em 2.25em;
+
+    background-color: #360066;
+
+}
+
+.search-bar > input:focus-visible
+{
+    outline: 1px solid #fbfefb;
 }

@@ -60,6 +60,12 @@ button.icf-secondary-button[disabled]
 /* #endregion */
 
 /* #region Arrow button */
+
+body
+{
+  --arrow-button-size: 40px;
+}
+
 button.icf-arrow-button
 {
   border: none;

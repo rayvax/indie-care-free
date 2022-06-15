@@ -1,6 +1,7 @@
 .dropdown
 {
     position: relative;
+    z-index: 100;
 }
 
 .dropdown .dropdown-icon
@@ -17,6 +18,7 @@
 
     padding: 1em;
 
+    box-shadow: 0 1px 2px #0d0020;
     background-color: #360066;
 
     white-space: nowrap;

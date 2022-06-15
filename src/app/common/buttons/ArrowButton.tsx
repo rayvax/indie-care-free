@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Icon, { IconType } from '../Icon';
 
 interface Props extends React.HTMLAttributes<HTMLButtonElement>
 {
@@ -8,18 +9,14 @@ interface Props extends React.HTMLAttributes<HTMLButtonElement>
 
 function ArrowButton({ direction, isFilled, ...props }: Props) 
 {
-    const imageFileName = (direction == 'left' ? "left-arrow-" : "right-arrow-")
-        + (isFilled ? "white.svg" : "purple.svg");
+    const icon: IconType = `${direction}-${(isFilled ? 'white' : 'purple')}-arrow`;
 
     return (
         <button
             className={ `icf-arrow-button ${direction} ${isFilled && "filled"}` }
             { ...props }
         >
-            <img
-                src={ `icons/arrows/${imageFileName}` }
-                alt={ `${direction} arrow button` }
-            />
+            <Icon type={ icon } />
         </button>
     );
 }

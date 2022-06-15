@@ -1,0 +1,76 @@
+.carousel
+{
+    --bottom-dot-size: 25px;
+    --arrow-button-size: 40px;
+
+    position: relative;
+
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap:15px;
+}
+
+.carousel button
+{
+    position: absolute;
+    top:calc(50% - var(--bottom-dot-size) - 15px) ;
+}
+
+.carousel button.left
+{
+    left: calc(0px - var(--arrow-button-size)/2);
+}
+
+.carousel button.right
+{
+    right:  calc(0px - var(--arrow-button-size)/2);
+}
+
+.carousel .carousel-content
+{
+    width: 100%;
+    display: flex;
+
+    gap:20px;
+}
+
+.carousel .carousel-content > *
+{
+    flex-grow: 1;
+}
+
+.carousel ul.bottom-dots
+{
+    display: flex;
+    justify-content: center;
+
+    gap: 13px;
+
+    margin: auto 0;
+
+    list-style: none;
+}
+
+.carousel ul.bottom-dots > li
+{
+    display: block;
+    width: var(--bottom-dot-size);
+    height: var(--bottom-dot-size);
+
+    background-color: rgba(82, 8, 125, 0.1);
+
+    border-radius: 50%;
+}
+
+.carousel ul.bottom-dots > li:not(.active-dot):hover
+{
+    cursor: pointer;
+}
+
+.carousel ul.bottom-dots > li.active-dot
+{
+    background-color: rgba(82, 8, 125);
+}

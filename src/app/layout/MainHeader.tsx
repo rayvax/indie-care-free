@@ -1,21 +1,22 @@
 import React, { useState } from "react";
-import DropDown, { DropDownOption } from "../common/DropDown";
+import { NavLink } from "react-router-dom";
+import DropDown from "../common/DropDown";
 import SearchBar from "../common/SearchBar";
 
-const assetOptions: DropDownOption[] = [
-    { title: "3D", href: "#3d" },
-    { title: "2D", href: "#2d" },
-    { title: "Textures", href: "#textures" },
-    { title: "Sound Effects", href: "#sound_effects" },
-    { title: "Music", href: "#music" },
-    { title: "Scripts", href: "#scripts" },
+const assetOptions = [
+    { title: "3D", linkPath: "/assets" },
+    { title: "2D", linkPath: "/assets" },
+    { title: "Textures", linkPath: "/assets" },
+    { title: "Sound Effects", linkPath: "/assets" },
+    { title: "Music", linkPath: "/assets" },
+    { title: "Scripts", linkPath: "/assets" },
 ];
 
-const copyrightsOptions: DropDownOption[] = [
-    { title: "CC0", href: "#cc0" },
-    { title: "CC-BY 4.0", href: "#cc-by-4.0" },
-    { title: "CC-BY-SA 4.0", href: "#cc-by-sa-4.0" },
-    { title: "CC-BY 3.0", href: "#cc-by-3.0" },
+const copyrightsOptions = [
+    { title: "CC0", href: "https://creativecommons.org/publicdomain/zero/1.0/" },
+    { title: "CC-BY 4.0", href: "https://creativecommons.org/publicdomain/zero/1.0/" },
+    { title: "CC-BY-SA 4.0", href: "https://creativecommons.org/publicdomain/zero/1.0/" },
+    { title: "CC-BY 3.0", href: "https://creativecommons.org/publicdomain/zero/1.0/" },
 ];
 
 
@@ -23,49 +24,44 @@ export default function MainHeader()
 {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    function login(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>)
-    {
-        event.preventDefault();
-        setIsLoggedIn(true);
-    }
-
-    function signOut(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>)
-    {
-        event.preventDefault();
-        setIsLoggedIn(false);
-    }
-
-    const profileOptions: DropDownOption[] = [
-        { title: "Profile", href: "#profile" },
-        { title: "Sign out", onClick: signOut },
-    ];
-
     return (
         <header className={ "main-header" }>
             <div className={ "logo" }>
-                <img
-
-                    src={ "./images/logo.webp" }
-                    alt={ "IndieCareFree logo" } />
+                <NavLink to={ '/' }>
+                    <img
+                        src={ "./images/logo.webp" }
+                        alt={ "IndieCareFree logo" }
+                    />
+                </NavLink>
             </div>
             <nav>
                 <ul>
                     <li>
                         <DropDown
                             title={ "Assets" }
-                            options={ assetOptions }
-                            iconPath={ "./icons/arrows/down_arrow.svg" }
-                        />
+                            icon={ "down-arrow" }
+                        >
+                            { assetOptions.map(opt =>
+                                <NavLink to={ opt.linkPath } key={ opt.title }>
+                                    { opt.title }
+                                </NavLink>)
+                            }
+                        </DropDown>
                     </li>
                     <li>
-                        <a href={ "#upload" }>Upload</a>
+                        <NavLink to={ '/upload' }>Upload</NavLink>
                     </li>
                     <li>
                         <DropDown
                             title={ "Copyrights" }
-                            options={ copyrightsOptions }
-                            iconPath={ "./icons/arrows/down_arrow.svg" }
-                        />
+                            icon={ "down-arrow" }
+                        >
+                            { copyrightsOptions.map(opt =>
+                                <a href={ opt.href } key={ opt.title }>
+                                    { opt.title }
+                                </a>)
+                            }
+                        </DropDown>
                     </li>
                 </ul>
             </nav>
@@ -81,26 +77,30 @@ export default function MainHeader()
                         />
                         <DropDown
                             title={ "Steve" }
-                            options={ profileOptions }
-                            iconPath={ "./icons/down_arrow.svg" }
+                            icon={ "down-arrow" }
                             rightSided
-                        />
+                        >
+                            <NavLink to={ '/profile' }>Profile</NavLink>
+                            <NavLink to={ '/' } onClick={ () => setIsLoggedIn(false) }>Sign Out</NavLink>
+                        </DropDown>
                     </div>
                 ) : (
                     <ul>
                         <li>
-                            <a
-                                href={ "#login" }
-                                onClick={ login }>
+                            <NavLink
+                                to={ '/login' }
+                                onClick={ () => setIsLoggedIn(true) }
+                            >
                                 Log in
-                            </a>
+                            </NavLink>
                         </li>
                         <li>
-                            <a
-                                href={ "#register" }
-                                onClick={ login }>
+                            <NavLink
+                                to={ '/register' }
+                                onClick={ () => setIsLoggedIn(true) }
+                            >
                                 Register
-                            </a>
+                            </NavLink>
                         </li>
                     </ul>
                 )

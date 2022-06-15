@@ -1,38 +1,40 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
+import Icon, { IconType } from "./Icon";
 
-interface Props
+interface DropDownProps extends React.HTMLAttributes<HTMLElement>
 {
     title: string;
-    options: DropDownOption[];
     initiallyOpened?: boolean;
 
-    iconPath?: string;
+    icon?: IconType;
     rightSided?: boolean;
 }
 
-export interface DropDownOption
-{
-    title: string;
-    href?: string;
-    onClick?: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
-}
-
-export default function DropDown({ title, options, initiallyOpened, iconPath, rightSided }: Props)
+export default function DropDown({ title, initiallyOpened, icon, rightSided, children }: DropDownProps)
 {
     const [isOpen, setIsOpen] = useState(initiallyOpened);
+
+    const location = useLocation();
+
+    React.useEffect(() =>
+    {
+        setIsOpen(initiallyOpened);
+    }, [location, initiallyOpened]);
 
     return (
         <div className={ "dropdown" }>
             <button onClick={ () => setIsOpen(!isOpen) }>
                 { title }
-                { iconPath && <img src={ iconPath } alt={ "down arrow" } className={ "dropdown-icon" } /> }
+                { icon && <Icon type={ icon } style={ { marginLeft: '5px' } } /> }
             </button>
             { isOpen &&
                 <ul className={ "dropdown-content" + (rightSided ? " right-sided" : "") }>
-                    { options.map(opt =>
-                    {
-                        return <li><a href={ opt.href } onClick={ opt.onClick }>{ opt.title }</a></li>;
-                    }) }
+                    { children && React.Children.map(children, child => (
+                        <li>
+                            { child }
+                        </li>
+                    )) }
                 </ul>
             }
         </div>

@@ -1,0 +1,87 @@
+import { ProfilePreview } from "./user";
+
+export interface Asset
+{
+    title: string;
+    mainImage: string;
+    rating: number;
+
+    author: ProfilePreview;
+
+    tags: string[];
+    license: string;
+
+    description: string;
+    dowloads: DownloadFile[];
+
+    comments: Comment[];
+}
+
+export interface BrowserAsset
+{
+    title: string;
+    mainImage: string;
+    rating: number;
+}
+
+export interface AssetPreview
+{
+    title: string;
+    mainImage: string;
+}
+
+interface DownloadFile
+{
+    title: string;
+    weight: number;
+}
+
+const assetNames = [
+    'Castle Crashers',
+    'Beholder',
+    'Zombies pack',
+    'Craft the mine and be happy',
+    'Hero assets',
+    'Pixel tools v3',
+    'Border into lands',
+    'Broken Hero',
+    'Midnight Hazard',
+    'Rule of Assault',
+    'Clash of Combat',
+    'Power and Flashbacks',
+    'Treason and Barbarians',
+    'Grimforce',
+    'Endorland',
+    'Astrocell',
+    'Dreadsky',
+    'Rising Power',
+    'Wild Resurrection',
+    'Werewolves of Theories',
+    'Realms of Bravery',
+    'Search and Phantom',
+    'Kings and Clans',
+    'Ironreign',
+    'Helltrail',
+    'Altercell',
+    'Borderkin',
+    'Military Age',
+    'Rune Battalion',
+    'Beasts of Faith',
+    'Force of Undoing',
+    'Villains and Heroes',
+    'Violence and Life',
+    'Magepath',
+    'Dataspace',
+    'Siegewatch',
+    'Clanphase',
+    'Silent State',
+    'Mass Emergency',
+    'Retaliate of Hypocrisy',
+    'Struggle of Prosecution',
+    'Remorse and Guns',
+    'Disorder and Chaos',
+    'Alpharush',
+    'Farshock',
+    'Deltaborne',
+    'Endorblade',
+];

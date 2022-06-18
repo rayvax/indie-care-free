@@ -10,13 +10,13 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap:15px;
+    gap: 15px;
 }
 
 .carousel button
 {
     position: absolute;
-    top:calc(50% - var(--bottom-dot-size) - 15px) ;
+    top: calc(50% - var(--bottom-dot-size) - 15px);
 }
 
 .carousel button.left
@@ -26,7 +26,7 @@
 
 .carousel button.right
 {
-    right:  calc(0px - var(--arrow-button-size)/2);
+    right: calc(0px - var(--arrow-button-size)/2);
 }
 
 .carousel .carousel-content
@@ -34,12 +34,13 @@
     width: 100%;
     display: flex;
 
-    gap:20px;
+    gap: 20px;
 }
 
-.carousel .carousel-content > *
+.carousel .carousel-content>*
 {
-    flex-grow: 1;
+    flex: 1 1 0;
+    border-radius: var(--default-border-radius);
 }
 
 .carousel ul.bottom-dots
@@ -54,7 +55,7 @@
     list-style: none;
 }
 
-.carousel ul.bottom-dots > li
+.carousel ul.bottom-dots>li
 {
     display: block;
     width: var(--bottom-dot-size);
@@ -65,12 +66,12 @@
     border-radius: 50%;
 }
 
-.carousel ul.bottom-dots > li:not(.active-dot):hover
+.carousel ul.bottom-dots>li:not(.active-dot):hover
 {
     cursor: pointer;
 }
 
-.carousel ul.bottom-dots > li.active-dot
+.carousel ul.bottom-dots>li.active-dot
 {
     background-color: rgba(82, 8, 125);
 }

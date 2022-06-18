@@ -32,12 +32,12 @@ function Carousel({ elementsInPage, children, ...props }: CarouselProps)
     let dots: React.ReactElement[] = [];
     for (let i = 0; i < activePage; i++)
     {
-        dots.push(<li onClick={ () => setActivePage(i) }></li>);
+        dots.push(<li key={ i } onClick={ () => setActivePage(i) }></li>);
     }
-    dots.push(<li className='active-dot'></li>);
+    dots.push(<li key={ activePage } className='active-dot'></li>);
     for (let i = activePage + 1; i < pagesCount; i++)
     {
-        dots.push(<li onClick={ () => setActivePage(i) }></li>);
+        dots.push(<li key={ i } onClick={ () => setActivePage(i) }></li>);
     }
 
     return (
@@ -47,7 +47,7 @@ function Carousel({ elementsInPage, children, ...props }: CarouselProps)
             }
 
             <div className='carousel-content'>
-                { childrenInPages[activePage].map(child => child) }
+                { childrenInPages[activePage] }
             </div>
 
             { activePage < pagesCount - 1 &&

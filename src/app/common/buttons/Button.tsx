@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-interface Props extends React.HTMLAttributes<HTMLButtonElement>
+interface Props extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, React.AriaAttributes
 {
   buttonType?: 'primary' | 'secondary';
   content?: string;
@@ -9,7 +9,7 @@ interface Props extends React.HTMLAttributes<HTMLButtonElement>
 
 function Button({ buttonType, content, disabled, ...other }: Props)
 {
-  let buttonClass = (buttonType === 'secondary') ? "icf-secondary-button" : "icf-primary-button";
+  let buttonClass = (buttonType === 'secondary') ? "secondary-button" : "primary-button";
 
   return (
     <button className={ buttonClass }

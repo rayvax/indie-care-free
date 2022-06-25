@@ -1,3 +1,9 @@
+
+import { shuffle } from "../utils/array-utils";
+import { getInRange } from "../utils/math-utils";
+import { getAssetImagePath } from "../utils/paths/imagePaths";
+import { setDelay, sleep } from "../utils/promise-utils";
+import { getRandomIntInclusive, getRandomNumber } from "../utils/random-utils";
 import { ProfilePreview } from "./user";
 
 export interface Asset
@@ -17,11 +23,16 @@ export interface Asset
     comments: Comment[];
 }
 
-export interface BrowserAsset
+export interface BrowseAsset
 {
     title: string;
     mainImage: string;
+
     rating: number;
+    ratingsCount: number;
+    isRated: boolean;
+
+    isFavourited: boolean;
 }
 
 export interface AssetPreview
@@ -85,3 +96,31 @@ const assetNames = [
     'Deltaborne',
     'Endorblade',
 ];
+
+
+
+export const getMockBrowseAssets = (assetCount: number) =>
+{
+    assetCount = getInRange(assetCount, 0, assetNames.length);
+    const names: string[] = shuffle(assetNames).slice(0, assetCount);
+
+    return setDelay(() =>
+    {
+        const data = names.map((name, i) =>
+        (
+            {
+                title: name,
+                mainImage: getAssetImagePath(i + 1),
+
+                rating: getRandomNumber(1, 5),
+                ratingsCount: getRandomIntInclusive(1, 100),
+                isRated: Math.random() > 0.85,
+
+                isFavourited: Math.random() > 0.85,
+
+            } as BrowseAsset
+        ));
+
+        return shuffle(data);
+    }, 1000);
+};

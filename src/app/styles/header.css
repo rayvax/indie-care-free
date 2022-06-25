@@ -16,13 +16,15 @@ header
     display: grid;
 
     grid-template-areas:
-            "logo navigation profile"
-            "searchbar searchbar searchbar";
+        "logo navigation profile"
+        "searchbar searchbar searchbar";
     grid-template-columns: auto 1fr auto;
 }
 
 
-.main-header::before /* Background */
+.main-header::before
+
+/* Background */
 {
     content: "";
 
@@ -54,13 +56,19 @@ header
     grid-area: searchbar;
 }
 
-
 /*#region Main navigation */
 .main-header nav
 {
     grid-area: navigation;
     margin: auto 0;
 }
+
+.main-header nav .current-page-title,
+.main-header nav a.active
+{
+    color: #ff3b89;
+}
+
 
 .main-header nav ul
 {
@@ -70,12 +78,12 @@ header
     list-style-type: none;
 }
 
-.main-header nav ul > li
+.main-header nav ul>li
 {
     margin-right: 2.2em;
 }
 
-.main-header nav ul li > a
+.main-header nav ul li>a
 {
     font: inherit;
     text-decoration: none;
@@ -102,24 +110,24 @@ header
     margin-right: 0.2em;
 }
 
-.profile-area > ul,
-.profile-area > div
+.profile-area>ul,
+.profile-area>div
 {
     display: flex;
     flex-direction: row;
 }
 
-.profile-area > ul
+.profile-area>ul
 {
     list-style-type: none;
 }
 
-.profile-area ul > li:not(:last-child)
+.profile-area ul>li:not(:last-child)
 {
     margin-right: 1em;
 }
 
-.profile-area ul > li > a
+.profile-area ul>li>a
 {
     color: currentColor;
     text-decoration: none;

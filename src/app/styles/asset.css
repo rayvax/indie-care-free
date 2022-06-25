@@ -1,0 +1,158 @@
+/* #region Browse Assets */
+
+ul.assets-list
+{
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: minmax(0, 1fr);
+
+    column-gap: 15px;
+    row-gap: 40px;
+}
+
+.browse-asset-component
+{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    --icon-size: 16px;
+}
+
+.browse-asset-component h2
+{
+    margin: 0;
+    color: #0d0020;
+
+    max-width: 95%;
+    font-size: 20px;
+    font-weight: normal;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.browse-asset-component>img
+{
+    width: 100%;
+    height: 150px;
+
+    object-fit: cover;
+
+    border-radius: 9px;
+}
+
+.browse-asset-component .statistics
+{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    --not-active-color: #52087d;
+    --active-color: #ff3b89;
+    --active-hover-color: #fa88b6;
+}
+
+.browse-asset-component .statistics button[title='favourite']::before
+{
+    content: '';
+
+    background-color: #52087d;
+    display: block;
+    width: 3px;
+    height: 100%;
+    border-radius: 10px;
+
+    margin-right: 10px;
+}
+
+/* #endregion */
+
+/* #region Favourite */
+
+button[title='favourite']
+{
+    background: none;
+    border: none;
+    padding: 0;
+
+    height: var(--icon-size);
+
+    display: flex;
+
+    fill: none;
+    stroke: var(--not-active-color);
+}
+
+button[title='favourite'] svg
+{
+    width: var(--icon-size);
+    height: var(--icon-size);
+}
+
+button[title='favourite']:hover
+{
+    fill: var(--active-hover-color);
+}
+
+button[title='favourite'].favourited
+{
+    fill: var(--active-color);
+    stroke: var(--active-color);
+}
+
+button[title='favourite'].favourited:hover
+{
+    fill: var(--active-hover-color);
+    stroke: var(--active-hover-color);
+}
+
+/* #endregion */
+
+/* #region Rating stars */
+
+ul.rating
+{
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+    display: flex;
+    gap: 3px;
+
+    color: #52087d;
+}
+
+ul.rating svg
+{
+    width: var(--icon-size);
+    height: var(--icon-size);
+}
+
+ul.rating:hover
+{
+    color: #8a0dd3;
+}
+
+ul.rating.rated
+{
+    color: var(--active-color);
+}
+
+ul.rating.rated:hover
+{
+    color: var(--active-hover-color);
+}
+
+ul.rating+.rating-count
+{
+    font-size: 16px;
+    color: rgba(82, 8, 125, 0.7);
+}
+
+/* #endregion */

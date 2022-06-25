@@ -1,29 +1,25 @@
 import * as React from 'react';
 
-export type IconType = 'pencil' | 'tick-pink' | 'tick-purple' | 'x-pink' | 'x-purple'
-    | 'star-empty' | 'star-half' | 'star-full' | 'star-empty-active' | 'star-half-active' | 'star-full-active'
+export type IconType = 'pencil' | 'tick-pink' | 'tick-purple' | 'x-pink' | 'x-purple' | 'search'
     | 'down-arrow' | 'left-purple-arrow' | 'right-purple-arrow' | 'left-white-arrow' | 'right-white-arrow'
-    | 'favourite-empty' | 'favourite-full' | 'search';
+    | 'plus' | 'minus';
 
 interface IconProps extends React.HTMLAttributes<HTMLImageElement>
 {
     type: IconType;
+    alt?: string;
 }
 
-function Icon({ type: icon, ...props }: IconProps) 
+function Icon({ type, alt, ...props }: IconProps) 
 {
-    let iconFileName = icon + '.svg';
-
-    if (icon.startsWith("star"))
-        iconFileName = "/stars/" + iconFileName;
-    else if (icon.endsWith('arrow'))
-        iconFileName = '/arrows/' + iconFileName;
+    let iconFileName = type + '.svg';
 
     return (
+        // через svg можно менять цвет
         <img
             { ...props }
-            src={ `/icons/${iconFileName}` }
-            alt={ icon }
+            src={ `./icons/${iconFileName}` }
+            alt={ alt || type }
         />
     );
 }

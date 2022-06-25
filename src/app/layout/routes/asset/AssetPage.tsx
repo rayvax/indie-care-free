@@ -3,7 +3,7 @@ import * as React from 'react';
 function AssetPage()
 {
     return (
-        <h1>Asset Page</h1>
+        <h1 className='visually-hidden'>Asset Page</h1>
     );
 }
 

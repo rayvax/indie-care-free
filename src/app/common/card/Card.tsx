@@ -6,7 +6,7 @@ function Card(props: React.HTMLAttributes<HTMLElement>)
     const { children, className, ...rest } = props;
 
     return (
-        <div { ...rest } className={ `card ${className ? className : ''}` }>
+        <div { ...rest } className={ `card ${className || ''}` }>
             { children }
         </div>
     );

@@ -1,4 +1,4 @@
-.icf-label
+.input-label
 {
     font-family: inherit;
     font-size: 14px;
@@ -13,35 +13,36 @@
     margin: 20px 0;
 }
 
-.icf-input,
-.icf-text-area
+.input-label input,
+.input-label textarea
 {
     font-family: inherit;
     font-size: 20px;
 }
 
-.icf-input
+.input-label input
 {
     padding: 5px 0 5px 20px;
-    
+
     color: #0d0020;
 
     border-radius: 0.5em;
     border: 1px solid #52087d;
 }
 
-.icf-text-area:focus-visible, .icf-input:focus-visible
+.input-label textarea:focus-visible,
+.input-label input:focus-visible
 {
     outline: 2px solid #52087d;
 }
 
-.icf-text-area
+.input-label textarea
 {
     box-sizing: border-box;
     resize: none;
 
     padding: 20px 40px 20px 20px;
-    
+
     color: #0d0020;
 
     border-color: #52087d;
@@ -49,19 +50,19 @@
 
 @supports selector(::-webkit-scrollbar)
 {
-    .icf-text-area
+    .input-label textarea
     {
         border-radius: 5px;
     }
 
-    .icf-text-area::-webkit-scrollbar 
+    .input-label textarea::-webkit-scrollbar
     {
         width: 9px;
         background-color: rgba(82, 8, 125, 0.3);
-        border-radius: 10px; 
+        border-radius: 10px;
     }
-      
-    .icf-text-area::-webkit-scrollbar-thumb 
+
+    .input-label textarea::-webkit-scrollbar-thumb
     {
         border-radius: 10px;
         background-color: rgba(82, 8, 125, 1);
@@ -70,7 +71,7 @@
 
 @supports (not selector(::-webkit-scrollbar))
 {
-    .icf-text-area
+    .input-label textarea
     {
         scrollbar-color: rgba(82, 8, 125, 1) rgba(82, 8, 125, 0.3);
 

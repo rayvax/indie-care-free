@@ -3,17 +3,26 @@ import TagList from './TagList';
 
 interface Props extends React.HTMLAttributes<HTMLLIElement>
 {
-    content?: string;
+    content: string;
     closable?: boolean;
-    onCloseClick?: React.MouseEventHandler<HTMLImageElement> | (() => void);
+    onCloseClick?: (tag: string) => void;
 }
 
 function Tag({ closable, content, onCloseClick, ...props }: Props) 
 {
+    if (!onCloseClick)
+        return <li></li>;
+
     return (
-        <li className="icf-tag" { ...props }>
-            { closable && <img onClick={ onCloseClick } src="icons\x-purple.svg" alt="purple x" /> }
-            { content || props.children }
+        <li className="tag" { ...props }>
+
+            { closable &&
+                <button type='button' title='remove' onClick={ () => onCloseClick(content) }>
+                    <img src="./icons/x-purple.svg" alt="remove" />
+                </button>
+            }
+            {/* сделать кнопку */ }
+            { content }
         </li>);
 }
 

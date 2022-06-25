@@ -12,10 +12,8 @@ function BlockWithSideContentProps(props: BlockWithSideContentProps)
 {
     const { sideImgSrc, sideImgAlt, contentProportion, contentSide = 'left', className, children, ...otherProps } = props;
 
-    const blockClass = `block-with-side-content ${className ? className : ''}`;
-
     return (
-        <div { ...otherProps } className={ blockClass } >
+        <div { ...otherProps } className={ `block-with-side-content ${className || ''}` } >
             <div className={ `side-content ${contentSide}-sided` } style={ { boxSizing: "border-box", width: `${contentProportion * 100}%` } } >
                 { children }
             </div>

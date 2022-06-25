@@ -1,0 +1,88 @@
+.browse-assets
+{
+    display: grid;
+    grid-template-areas: 'assets-list filter';
+
+    grid-template-columns: 3fr 1fr;
+    gap: 50px;
+}
+
+.assets-area
+{
+    grid-area: assets-list;
+
+    min-height: 400px;
+}
+
+.filter
+{
+    grid-area: filter;
+}
+
+/* #region Filter */
+
+.filter ul
+{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.filter h2,
+.filter h3
+{
+    font-size: 26px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.filter .tags label
+{
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.filter>form>ul>li::before
+{
+    content: "";
+
+    display: block;
+    height: 1px;
+    width: 100%;
+
+    background-color: #210052;
+    border-radius: 1px;
+}
+
+.filter-title
+{
+    display: flex;
+}
+
+.filter-title button[title='expand'],
+.filter-title button[title='hide']
+{
+    margin-left: auto;
+
+    background: none;
+    border: none;
+}
+
+.filter>form>ul>li>ul
+{
+    margin-bottom: 15px;
+}
+
+.filter>form
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.filter>form button[type='submit']
+{
+    margin-top: 20px;
+    margin-left: auto;
+}
+
+/* #endregion */

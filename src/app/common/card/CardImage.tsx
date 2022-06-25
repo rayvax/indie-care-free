@@ -10,11 +10,11 @@ interface CardImageProps extends React.HTMLAttributes<HTMLImageElement>
 
 function CardImage({ circled, className, src, alt, description, ...rest }: CardImageProps) 
 {
-    let imageClass = 'card-image';
+    let imageClassName = 'card-image';
     if (circled)
-        imageClass += " circled";
+        imageClassName += " circled";
     if (className)
-        imageClass += ` ${className}`;
+        imageClassName += ` ${className}`;
 
     if (description)
         return (<figure>
@@ -22,7 +22,7 @@ function CardImage({ circled, className, src, alt, description, ...rest }: CardI
                 { ...rest }
                 src={ src }
                 alt={ alt }
-                className={ imageClass }
+                className={ imageClassName }
             />
             <figcaption className='image-description'>{ description }</figcaption>
         </figure>);
@@ -31,7 +31,7 @@ function CardImage({ circled, className, src, alt, description, ...rest }: CardI
         { ...rest }
         src={ src }
         alt={ alt }
-        className={ imageClass }
+        className={ imageClassName }
     />);
 }
 

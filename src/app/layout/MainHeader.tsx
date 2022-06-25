@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import DropDown from "../common/DropDown";
 import SearchBar from "../common/SearchBar";
+import { browseAssetsPagePath, homePagePath, loginPagePath, profilePagePath, registerPagePath, uploadPagePath } from "../utils/paths/routerPaths";
+import { usePathname } from "../utils/react-router-dom";
 
 const assetOptions = [
-    { title: "3D", linkPath: "/assets" },
-    { title: "2D", linkPath: "/assets" },
-    { title: "Textures", linkPath: "/assets" },
-    { title: "Sound Effects", linkPath: "/assets" },
-    { title: "Music", linkPath: "/assets" },
-    { title: "Scripts", linkPath: "/assets" },
+    { title: "3D", linkPath: browseAssetsPagePath },
+    { title: "2D", linkPath: browseAssetsPagePath },
+    { title: "Textures", linkPath: browseAssetsPagePath },
+    { title: "Sound Effects", linkPath: browseAssetsPagePath },
+    { title: "Music", linkPath: browseAssetsPagePath },
+    { title: "Scripts", linkPath: browseAssetsPagePath },
 ];
 
 const copyrightsOptions = [
@@ -20,17 +22,18 @@ const copyrightsOptions = [
 ];
 
 
-export default function MainHeader()
+export default function MainHeader({ className, ...rest }: React.HTMLAttributes<HTMLElement>)
 {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const pathname = usePathname();
 
     return (
-        <header className={ "main-header" }>
+        <header { ...rest } className={ `main-header ${className || ''}` }>
             <div className={ "logo" }>
-                <NavLink to={ '/' }>
+                <NavLink to={ homePagePath }>
                     <img
-                        src={ "./images/logo.webp" }
-                        alt={ "IndieCareFree logo" }
+                        src="./images/logo.webp"
+                        alt="IndieCareFree logo"
                     />
                 </NavLink>
             </div>
@@ -39,6 +42,7 @@ export default function MainHeader()
                     <li>
                         <DropDown
                             title={ "Assets" }
+                            titleClassName={ pathname === browseAssetsPagePath ? 'current-page-title' : '' }
                             icon={ "down-arrow" }
                         >
                             { assetOptions.map(opt =>
@@ -49,7 +53,7 @@ export default function MainHeader()
                         </DropDown>
                     </li>
                     <li>
-                        <NavLink to={ '/upload' }>Upload</NavLink>
+                        <NavLink to={ uploadPagePath }>Upload</NavLink>
                     </li>
                     <li>
                         <DropDown
@@ -70,7 +74,7 @@ export default function MainHeader()
 
                     <div>
                         <img
-                            src={ "images/avatars/main-user.webp" }
+                            src={ "./images/avatars/main-user.webp" }
                             alt={ "avatar" }
                             className={ "avatar" }
                             onClick={ () => setIsLoggedIn(false) }
@@ -80,15 +84,15 @@ export default function MainHeader()
                             icon={ "down-arrow" }
                             rightSided
                         >
-                            <NavLink to={ '/profile' }>Profile</NavLink>
-                            <NavLink to={ '/' } onClick={ () => setIsLoggedIn(false) }>Sign Out</NavLink>
+                            <NavLink to={ profilePagePath }>Profile</NavLink>
+                            <NavLink to={ homePagePath } onClick={ () => setIsLoggedIn(false) }>Sign Out</NavLink>
                         </DropDown>
                     </div>
                 ) : (
                     <ul>
                         <li>
                             <NavLink
-                                to={ '/login' }
+                                to={ loginPagePath }
                                 onClick={ () => setIsLoggedIn(true) }
                             >
                                 Log in
@@ -96,7 +100,7 @@ export default function MainHeader()
                         </li>
                         <li>
                             <NavLink
-                                to={ '/register' }
+                                to={ registerPagePath }
                                 onClick={ () => setIsLoggedIn(true) }
                             >
                                 Register

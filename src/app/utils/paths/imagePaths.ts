@@ -1,0 +1,1 @@
+export const getAssetImagePath = (index: number) => `./images/assets/${index}.webp`;

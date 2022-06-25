@@ -3,8 +3,9 @@ import { NavLink } from 'react-router-dom';
 import BlockWithSideContentProps from '../../common/BlockWithSideContent';
 import Button from '../../common/buttons/Button';
 import Card from '../../common/card/Card';
-import Carousel from '../../common/carousels/Carousel';
+import Carousel from '../../common/carousel/Carousel';
 import { mockProfilePreviews } from '../../models/user';
+import { browseAssetsPagePath } from '../../utils/paths/routerPaths';
 
 const popularThisWeek = [
     "Mighty 2d assets budle", 'Pixelart items pack',
@@ -24,8 +25,9 @@ const categories = [
 function HomePage()
 {
     return (
-        <>
-            <div style={ { margin: '35px 0 40px' } }>
+        <div style={ { margin: '35px 0' } }>
+            <h1 className='visually-hidden'>Home Page</h1>
+            <div style={ { margin: '0 0 40px' } }>
                 <h2>Popular this week</h2>
                 <Carousel elementsInPage={ 1 }>
                     { popularThisWeek.map(asset =>
@@ -45,16 +47,16 @@ function HomePage()
                 <Carousel elementsInPage={ 4 }>
                     { categories.map(category =>
                     (
-                        <NavLink to={ '/assets' } key={ category }>
+                        <NavLink to={ browseAssetsPagePath } key={ category }>
                             <Card>
-                                <Card.Image src={ `/images/categories/${category}.png` } alt={ `${category} icon` } />
+                                <Card.Image src={ `./images/categories/${category}.png` } alt={ `${category}` } />
                             </Card>
                         </NavLink>
                     )) }
                 </Carousel>
             </div>
             <BlockWithSideContentProps
-                sideImgSrc='/images/new to icf bg.jpg'
+                sideImgSrc='./images/new to icf bg.jpg'
                 sideImgAlt='The Last Night screenshot'
                 contentProportion={ 0.4 }
                 contentSide='left'
@@ -67,7 +69,6 @@ function HomePage()
             <div>
                 <h2>Top rated publishers</h2>
                 <Carousel elementsInPage={ 5 }>
-                    {/* temporary placeholder */ }
                     { mockProfilePreviews.map(profile =>
                     (
                         <Card key={ profile.name }>
@@ -81,7 +82,7 @@ function HomePage()
                     )) }
                 </Carousel>
             </div>
-        </>
+        </div>
     );
 }
 

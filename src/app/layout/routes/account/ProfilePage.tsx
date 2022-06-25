@@ -3,7 +3,7 @@ import * as React from 'react';
 function ProfilePage()
 {
     return (
-        <h1>Profile</h1>
+        <h1 className='visually-hidden'>Profile</h1>
     );
 }
 

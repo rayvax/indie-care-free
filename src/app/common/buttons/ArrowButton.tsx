@@ -13,10 +13,10 @@ function ArrowButton({ direction, isFilled, ...props }: Props)
 
     return (
         <button
-            className={ `icf-arrow-button ${direction} ${isFilled && "filled"}` }
+            className={ `arrow-button ${direction} ${isFilled && "filled"}` }
             { ...props }
         >
-            <Icon type={ icon } />
+            <Icon type={ icon } alt={ direction } />
         </button>
     );
 }

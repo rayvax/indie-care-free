@@ -17,6 +17,8 @@
 {
     position: absolute;
     top: calc(50% - var(--bottom-dot-size) - 15px);
+
+    z-index: 1;
 }
 
 .carousel button.left
@@ -29,21 +31,41 @@
     right: calc(0px - var(--arrow-button-size)/2);
 }
 
-.carousel .carousel-content
+.carousel .viewport
 {
     width: 100%;
-    display: flex;
-
-    gap: 20px;
+    overflow-x: hidden;
 }
 
-.carousel .carousel-content>*
+.carousel ul.carousel-content
 {
-    flex: 1 1 0;
+    --items-gap: 20;
+
+    display: flex;
+
+    gap: calc(var(--items-gap) * 1px);
+
+    list-style: none;
+    padding: 0;
+
+    transition: transform 0.5s;
+    transform: translateX(calc(var(--carousel-content-position-x, 0) * 1px));
+}
+
+.carousel ul.carousel-content>li
+{
+    flex: none;
+    width: calc((100% - (var(--items-gap) * 1px) * (var(--elements-in-page, 1) - 1))/var(--elements-in-page, 1));
     border-radius: var(--default-border-radius);
 }
 
-.carousel ul.bottom-dots
+.carousel ul.carousel-content>li>img
+{
+    width: calc((100% - (var(--items-gap) * 1px) * (var(--elements-in-page, 1) - 1))/var(--elements-in-page, 1));
+    border-radius: var(--default-border-radius);
+}
+
+.carousel ul.page-counter
 {
     display: flex;
     justify-content: center;
@@ -55,7 +77,7 @@
     list-style: none;
 }
 
-.carousel ul.bottom-dots>li
+.carousel ul.page-counter>li
 {
     display: block;
     width: var(--bottom-dot-size);
@@ -66,12 +88,12 @@
     border-radius: 50%;
 }
 
-.carousel ul.bottom-dots>li:not(.active-dot):hover
+.carousel ul.page-counter>li:not(.active-dot):hover
 {
     cursor: pointer;
 }
 
-.carousel ul.bottom-dots>li.active-dot
+.carousel ul.page-counter>li.active-dot
 {
     background-color: rgba(82, 8, 125);
 }

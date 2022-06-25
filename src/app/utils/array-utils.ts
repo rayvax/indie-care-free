@@ -1,4 +1,4 @@
-export function shuffle(array: any[])
+export function shuffle<T>(array: T[])
 {
     let remaining = array.length; //index that divides an array to unshuffled and shuffled parts
     let temp;

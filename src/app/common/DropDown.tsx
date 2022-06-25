@@ -5,14 +5,24 @@ import Icon, { IconType } from "./Icon";
 interface DropDownProps extends React.HTMLAttributes<HTMLElement>
 {
     title: string;
+    titleClassName?: string;
     initiallyOpened?: boolean;
 
     icon?: IconType;
     rightSided?: boolean;
 }
 
-export default function DropDown({ title, initiallyOpened, icon, rightSided, children }: DropDownProps)
+export default function DropDown(props: DropDownProps)
 {
+    const {
+        title,
+        titleClassName,
+        initiallyOpened,
+        icon,
+        rightSided,
+        children,
+        className,
+        ...rest } = props;
     const [isOpen, setIsOpen] = useState(initiallyOpened);
 
     const location = useLocation();
@@ -23,9 +33,9 @@ export default function DropDown({ title, initiallyOpened, icon, rightSided, chi
     }, [location, initiallyOpened]);
 
     return (
-        <div className={ "dropdown" }>
+        <div { ...rest } className={ `dropdown ${className}` }>
             <button onClick={ () => setIsOpen(!isOpen) }>
-                { title }
+                <span className={ titleClassName }>{ title }</span>
                 { icon && <Icon type={ icon } style={ { marginLeft: '5px' } } /> }
             </button>
             { isOpen &&

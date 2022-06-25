@@ -1,10 +1,13 @@
 @import "header.css";
+@import "browse-assets-page.css";
+@import "asset.css";
 @import "dropdown.css";
 @import "buttons.css";
 @import "forms.css";
 @import "carousel.css";
 @import "block-with-side-content.css";
 @import "card.css";
+@import "loading-component.css";
 
 body
 {
@@ -14,6 +17,7 @@ body
     --main-content-area: 1148px;
     max-width: var(--main-content-area);
     margin: 0 auto;
+    padding-bottom: 2em;
 
     font-family: 'Sunflower', sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -29,6 +33,20 @@ code
 {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
+}
+
+.visually-hidden
+{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
 }
 
 .main-content-area
@@ -52,12 +70,12 @@ h2
 }
 
 /* #region Anchor */
-.icf-anchor
+a
 {
     color: #FF3B89;
 }
 
-.icf-anchor:visited
+a:visited
 {
     color: #DD2890;
     opacity: 50%;
@@ -66,21 +84,21 @@ h2
 /* #endregion */
 
 /* #region Checkbox */
-.icf-checkbox
+.checkbox
 {
     position: absolute;
     z-index: -1;
     opacity: 0;
 }
 
-.icf-checkbox+label
+.checkbox+label
 {
     display: inline-flex;
     align-items: center;
     user-select: none;
 }
 
-.icf-checkbox+label::before
+.checkbox+label::before
 {
     content: '';
     display: inline-block;
@@ -96,7 +114,7 @@ h2
     background-size: 50% 50%;
 }
 
-.icf-checkbox:checked+label::before
+.checkbox:checked+label::before
 {
     background-color: #FF3B89;
     background-image: url("../../../public/icons/tick-white.svg");
@@ -106,14 +124,17 @@ h2
 /* #endregion */
 
 /* #region Tag */
-.icf-tag-list
+.tag-list
 {
     list-style: none;
+    padding: 0;
+
     display: flex;
+    flex-wrap: wrap;
     gap: 1em;
 }
 
-.icf-tag
+.tag
 {
     font-size: 14px;
 
@@ -125,14 +146,14 @@ h2
     border-radius: 1em;
 }
 
-.icf-tag>*
+.tag button[title='remove']
 {
-    margin-right: 0.5em;
+    background: none;
+    border: none;
+    margin: 0;
+    padding-right: 0.5em;
 }
 
-/* #endregion */
-
-/* #region  */
 /* #endregion */
 
 /* #region  */

@@ -1,0 +1,42 @@
+.newbie-page
+{
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+.motivational-video-block
+{
+    display: flex;
+    gap: 80px;
+}
+
+.motivational-video-block .video-image
+{
+    align-self: center;
+    flex: 0 0 auto;
+    border-radius: 10px;
+}
+
+.motivational-video-block h2
+{
+    font-size: 30px;
+    color: #0d0020;
+    margin-top: 0;
+}
+
+.motivational-video-block p:last-child
+{
+    margin-bottom: 0;
+}
+
+.newbie-page ul.copyrights-list
+{
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.newbie-page ul.copyrights-list figure.image-with-description>img
+{
+    border-radius: 0;
+    object-fit: contain;
+}

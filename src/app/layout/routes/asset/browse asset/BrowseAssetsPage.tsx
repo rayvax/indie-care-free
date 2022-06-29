@@ -1,11 +1,11 @@
-import React, { ChangeEvent, FormEvent, KeyboardEvent, useEffect, useState } from 'react';
-import Button from '../../../../common/buttons/Button';
+import { FormEvent, useEffect, useState } from 'react';
+import ICFButton from '../../../../common/buttons/ICFButton';
 import ICFCheckbox from '../../../../common/forms/ICFCheckbox';
-import ICFTextInput from '../../../../common/forms/ICFTextInput';
+import TagListInput from '../../../../common/forms/TagListInput';
 import Icon from '../../../../common/Icon';
 import LoadingComponent from '../../../../common/LoadingComponent';
-import Tag from '../../../../common/tag/Tag';
 import { BrowseAsset, getMockBrowseAssets } from '../../../../models/asset';
+import { icfCategories, icfCopyrights } from '../../../../utils/constants/icf-constants';
 import BrowseAssetComponent from './BrowseAsset';
 
 interface ExpandStatus
@@ -16,10 +16,6 @@ interface ExpandStatus
 }
 const defaultExpandStatus: ExpandStatus = { categories: false, licenses: false, tags: false };
 
-const categories = ['3D', '2D', 'Music', 'Sounds', 'Scripts', 'Textures',];
-
-const licenses = ["CC0", "CC-BY 4.0", "CC-BY-SA 4.0", "CC-BY 3.0",];
-
 function BrowseAssetsPage()
 {
     const [assets, setAssets] = useState<BrowseAsset[]>([]);
@@ -27,36 +23,19 @@ function BrowseAssetsPage()
 
     const [expandStatus, setExpandStatus] = useState<ExpandStatus>(defaultExpandStatus);
 
-    const [filterTags, setFilterTags] = useState<string[]>([]);
-    const [currentTag, setCurrentTag] = useState<string>('');
-
-    useEffect(() =>
+    function refreshAssets()
     {
+        setIsLoading(true);
         getMockBrowseAssets(16).then((data) =>
         {
             setAssets(data);
-        }
-        ).catch((error) =>
-        {
-            console.log(error);
-        }).finally(() => setIsLoading(false));
-    }, []);
-
-    function handleTagKeyDown(event: KeyboardEvent)
-    {
-        if (event.key !== 'Enter')
-            return;
-
-        if (!filterTags.some((tag) => tag === currentTag))
-        {
-            setFilterTags([...filterTags, currentTag]);
-            setCurrentTag('');
-        }
+        })
+            .catch((error) => console.log(error))
+            .finally(() => setIsLoading(false));
     }
-    function removeTag(targetTag: string)
-    {
-        setFilterTags(filterTags.filter(tag => tag !== targetTag));
-    }
+
+    useEffect(refreshAssets, []);
+
     function ToggleExpandStatus(section: keyof ExpandStatus)
     {
         const prevStatus = expandStatus[section];
@@ -66,16 +45,7 @@ function BrowseAssetsPage()
     {
         //mock filter
         event.preventDefault();
-
-        setIsLoading(true);
-        getMockBrowseAssets(16).then((data) =>
-        {
-            setAssets(data);
-        }
-        ).catch((error) =>
-        {
-            console.log(error);
-        }).finally(() => setIsLoading(false));
+        refreshAssets();
     }
 
     return (
@@ -86,7 +56,7 @@ function BrowseAssetsPage()
                     { isLoading ? (
                         <LoadingComponent title='Loading assets...' />
                     ) : (
-                        <ul className='assets-list'>
+                        <ul className='grid-list'>
                             { assets.map(asset =>
                             (
                                 <li key={ asset.title }>
@@ -113,7 +83,7 @@ function BrowseAssetsPage()
                                 </div>
                                 { expandStatus.categories &&
                                     <ul>
-                                        { categories.map(category =>
+                                        { icfCategories.map(category =>
                                         (
                                             <li>
                                                 <ICFCheckbox
@@ -140,14 +110,14 @@ function BrowseAssetsPage()
                                 </div>
                                 { expandStatus.licenses &&
                                     <ul>
-                                        { licenses.map(license =>
+                                        { icfCopyrights.map(license =>
                                         (
                                             <li>
                                                 <ICFCheckbox
-                                                    key={ license }
-                                                    label={ license }
-                                                    name={ license }
-                                                    id={ license + ' checkbox' }
+                                                    key={ license.title }
+                                                    label={ license.title }
+                                                    name={ license.title }
+                                                    id={ license.title + ' checkbox' }
                                                 />
                                             </li>
                                         )) }
@@ -165,25 +135,12 @@ function BrowseAssetsPage()
                                         <Icon type={ expandStatus.tags ? 'minus' : 'plus' } />
                                     </button>
                                 </div>
-                                { expandStatus.tags && (
-                                    <>
-                                        <ICFTextInput
-                                            onKeyDown={ handleTagKeyDown }
-                                            name='tag'
-                                            onChange={ (event: ChangeEvent<HTMLInputElement>) => setCurrentTag(event.target.value) }
-                                            value={ currentTag }
-                                        />
-                                        <Tag.List>
-                                            { filterTags.map((tag) =>
-                                            (
-                                                <Tag key={ tag } content={ tag } closable onCloseClick={ removeTag } />
-                                            )) }
-                                        </Tag.List>
-                                    </>
-                                ) }
+                                { expandStatus.tags &&
+                                    <TagListInput name='tag-list' />
+                                }
                             </li>
                         </ul>
-                        <Button type='submit' content='Apply filter' />
+                        <ICFButton type='submit' content='Apply filter' />
                     </form>
                 </div>
             </div>

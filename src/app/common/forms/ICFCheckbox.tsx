@@ -2,10 +2,11 @@ import * as React from 'react';
 
 interface LabeledInputProps extends React.HTMLProps<HTMLInputElement>
 {
-    label: string;
+    label?: string;
+    id: string;
 }
 
-function ICFCheckbox({ label, className, ...props }: LabeledInputProps) 
+function ICFCheckbox({ label, className, children, ...props }: LabeledInputProps) 
 {
     return (
         <>
@@ -14,8 +15,8 @@ function ICFCheckbox({ label, className, ...props }: LabeledInputProps)
                 type='checkbox'
                 className={ `checkbox ${className}` }
             />
-            <label htmlFor={ props.id || props.name || '' } >
-                { label }
+            <label htmlFor={ props.id } >
+                { label || children }
             </label>
         </>
     );

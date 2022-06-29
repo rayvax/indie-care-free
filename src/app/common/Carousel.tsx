@@ -1,18 +1,20 @@
 import React, { CSSProperties } from 'react';
-import ArrowButton from '../buttons/ArrowButton';
+import ArrowButton from './buttons/ArrowButton';
 
 interface CarouselProps extends React.HTMLAttributes<HTMLElement>
 {
-    elementsInPage: number;
+    itemsInPage: number;
+    itemHeight?: string;
+    buttonsOnBottom?: boolean;
 }
 
-function Carousel({ elementsInPage, children, ...props }: CarouselProps) 
+function Carousel({ itemsInPage, itemHeight, buttonsOnBottom: bottomButtons, children, ...props }: CarouselProps) 
 {
     const [activePage, setActivePage] = React.useState(0);
     const viewport = React.useRef<HTMLDivElement>(null);
 
     const childrenArray = React.Children.toArray(children);
-    const pagesCount = Math.ceil(childrenArray.length / elementsInPage);
+    const pagesCount = Math.ceil(childrenArray.length / itemsInPage);
 
     //dots at the bottom indicating page
     const dots = getPageDots(activePage, pagesCount, moveCarouselContentToPage);
@@ -53,7 +55,39 @@ function Carousel({ elementsInPage, children, ...props }: CarouselProps)
         setActivePage(destinationPage);
     }
 
-    const contentProperty = { '--elements-in-page': elementsInPage } as CSSProperties;
+    const contentProperty = { '--items-in-page': itemsInPage, '--carousel-item-height': itemHeight || 'auto' } as CSSProperties;
+
+    if (bottomButtons)
+    {
+        return (
+            <div { ...props } className='carousel'>
+
+                <div className='viewport' ref={ viewport }>
+                    <ul className='carousel-content' style={ contentProperty }>
+                        { React.Children.map(children, (child, index) => (
+                            <li key={ index } >
+                                { child }
+                            </li>
+                        )) }
+                    </ul>
+                </div>
+
+
+                <div className='bottom-control'>
+                    { activePage > 0 &&
+                        <ArrowButton direction='left' onClick={ () => moveCarouselContentToPage(activePage - 1) } />
+                    }
+                    <ul className='page-counter'>
+                        { dots }
+                    </ul>
+                    { activePage < pagesCount - 1 &&
+                        <ArrowButton direction='right' onClick={ () => moveCarouselContentToPage(activePage + 1) } />
+                    }
+                </div>
+
+            </div>
+        );
+    }
 
     return (
         <div { ...props } className='carousel'>

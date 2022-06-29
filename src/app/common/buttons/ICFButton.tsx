@@ -4,21 +4,20 @@ interface Props extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLB
 {
   buttonType?: 'primary' | 'secondary';
   content?: string;
-  disabled?: boolean;
 }
 
-function Button({ buttonType, content, disabled, ...other }: Props)
+function ICFButton({ buttonType, content, className, ...other }: Props)
 {
-  let buttonClass = (buttonType === 'secondary') ? "secondary-button" : "primary-button";
+  let buttonTypeClassName = (buttonType === 'secondary') ? "secondary-button" : "primary-button";
 
   return (
-    <button className={ buttonClass }
-      disabled={ disabled }
+    <button
       { ...other }
+      className={ `${buttonTypeClassName} ${className || ''}` }
     >
       { content || other.children }
     </button>
   );
 }
 
-export default Button;
+export default ICFButton;

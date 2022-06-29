@@ -2,7 +2,7 @@ import * as React from 'react';
 
 export type IconType = 'pencil' | 'tick-pink' | 'tick-purple' | 'x-pink' | 'x-purple' | 'search'
     | 'down-arrow' | 'left-purple-arrow' | 'right-purple-arrow' | 'left-white-arrow' | 'right-white-arrow'
-    | 'plus' | 'minus';
+    | 'plus' | 'minus' | 'image-placeholder';
 
 interface IconProps extends React.HTMLAttributes<HTMLImageElement>
 {
@@ -18,7 +18,7 @@ function Icon({ type, alt, ...props }: IconProps)
         // через svg можно менять цвет
         <img
             { ...props }
-            src={ `./icons/${iconFileName}` }
+            src={ `/icons/${iconFileName}` }
             alt={ alt || type }
         />
     );

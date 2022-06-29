@@ -1,5 +1,6 @@
 import { shuffle } from "../utils/array-utils";
-import { Asset, AssetPreview } from "./asset";
+import { getAvatarPath } from "../utils/paths/imagePaths";
+import { AssetPreview } from "./asset";
 
 export interface Profile
 {
@@ -20,8 +21,6 @@ export interface ProfilePreview
     avatar: string;
 }
 
-
-const getAvatarPath = (avatarIndex: number) => `./images/avatars/other users/${avatarIndex}.webp`;
 const mockUsernames: string[] = [
     'Rapid Fall',
     'Jade Bash',
@@ -59,7 +58,7 @@ export const getRandomProfilePreviews = () =>
 {
     shuffle(mockProfilePreviews);
 
-    const randomStart = Math.floor(Math.random() * mockProfilePreviews.length);
+    const randomEnd = Math.floor(Math.random() * mockProfilePreviews.length);
 
-    return mockProfilePreviews.slice(randomStart);
+    return mockProfilePreviews.slice(0, randomEnd);
 };

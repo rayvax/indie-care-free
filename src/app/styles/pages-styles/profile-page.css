@@ -1,0 +1,162 @@
+.profile-page
+{
+    display: grid;
+
+    grid-template-areas:
+        'main-info followings'
+        'assets assets';
+
+    grid-template-columns: 1fr 3fr;
+    column-gap: 80px;
+    row-gap: 50px;
+}
+
+.profile-page h2
+{
+    font-size: 30px;
+    margin: 0;
+    margin-bottom: 0.7em;
+
+    color: #0D0020;
+}
+
+.profile-page .main-info
+{
+    grid-area: main-info;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-page .main-info ul
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.profile-page .main-info .nickname
+{
+    font-size: 26px;
+}
+
+.profile-page .main-info .email
+{
+    font-size: 16px;
+    color: #52087dbe;
+}
+
+.profile-page .main-info .email a
+{
+    color: currentColor;
+    text-decoration: none;
+}
+
+.profile-page .main-info .follow-button
+{
+    margin-top: 10px;
+}
+
+.profile-page .followers-info
+{
+    grid-area: followings;
+}
+
+.profile-page .assets-info
+{
+    grid-area: assets;
+}
+
+.profile-page ul.assets-list
+{
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    color: #52087D;
+}
+
+.profile-page ul.profile-list
+{
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    color: #52087D;
+}
+
+/* #region My profile tab */
+.profile-page .my-profile:not([hidden])
+{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.profile-page .my-profile h4
+{
+    font-size: 30px;
+    margin: 0;
+    color: #52087D;
+}
+
+.profile-page .my-profile label
+{
+    margin: 0;
+}
+
+.profile-page .my-profile .username
+{
+    display: grid;
+    grid-template-areas:
+        'title title title'
+        'name accept cancel';
+
+    grid-template-columns: 1fr min-content min-content;
+    column-gap: 5px;
+
+    font-size: 24px;
+}
+
+.profile-page .my-profile .username h4
+{
+    grid-area: title;
+}
+
+.profile-page .my-profile .username .accept
+{
+    grid-area: accept;
+}
+
+.profile-page .my-profile .username .cancel
+{
+    grid-area: cancel;
+}
+
+.profile-page .my-profile .username button
+{
+    background: none;
+    border: none;
+}
+
+.profile-page .my-profile .username label>input
+{
+    width: 95%;
+}
+
+.profile-page .my-profile .email a
+{
+    color: currentColor;
+    text-decoration: none;
+
+    font-size: 24px;
+}
+
+.profile-page .my-profile button.change-password
+{
+    margin-top: 1em;
+    width: fit-content;
+}
+
+/* #endregion */

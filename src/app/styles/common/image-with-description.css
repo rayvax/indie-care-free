@@ -1,0 +1,34 @@
+figure.image-with-description
+{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    --image-height: auto;
+}
+
+figure.image-with-description>img
+{
+    width: 100%;
+    height: var(--image-height);
+    object-fit: cover;
+}
+
+figure.image-with-description>img:not(.circled)
+{
+    border-radius: 10px;
+}
+
+figure.image-with-description figcaption
+{
+    width: 90%;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    text-align: center;
+}

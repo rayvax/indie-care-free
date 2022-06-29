@@ -1,0 +1,37 @@
+.login-page .actions .alternative-action
+{
+    margin-left: 0.5em;
+}
+
+.login-page .other-auth
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.login-page form
+{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login-page .actions
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.login-page .other-auth img
+{
+    box-sizing: border-box;
+    object-fit: contain;
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+
+    border: 1px #52087d solid;
+    border-radius: 10px;
+}

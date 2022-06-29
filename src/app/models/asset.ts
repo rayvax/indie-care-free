@@ -2,7 +2,7 @@
 import { shuffle } from "../utils/array-utils";
 import { getInRange } from "../utils/math-utils";
 import { getAssetImagePath } from "../utils/paths/imagePaths";
-import { setDelay, sleep } from "../utils/promise-utils";
+import { setDelay } from "../utils/promise-utils";
 import { getRandomIntInclusive, getRandomNumber } from "../utils/random-utils";
 import { ProfilePreview } from "./user";
 
@@ -18,7 +18,7 @@ export interface Asset
     license: string;
 
     description: string;
-    dowloads: DownloadFile[];
+    downloads: DownloadFile[];
 
     comments: Comment[];
 }
@@ -98,7 +98,7 @@ const assetNames = [
 ];
 
 
-
+//returns random browse assets after delay
 export const getMockBrowseAssets = (assetCount: number) =>
 {
     assetCount = getInRange(assetCount, 0, assetNames.length);
@@ -119,6 +119,25 @@ export const getMockBrowseAssets = (assetCount: number) =>
                 isFavourited: Math.random() > 0.85,
 
             } as BrowseAsset
+        ));
+
+        return shuffle(data);
+    }, 1000);
+};
+
+export const getMockAssetPreviews = (assetCount: number) =>
+{
+    assetCount = getInRange(assetCount, 0, assetNames.length);
+    const names: string[] = shuffle(assetNames).slice(0, assetCount);
+
+    return setDelay(() =>
+    {
+        const data = names.map((name, i) =>
+        (
+            {
+                title: name,
+                mainImage: getAssetImagePath(i + 1),
+            } as AssetPreview
         ));
 
         return shuffle(data);

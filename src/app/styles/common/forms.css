@@ -1,3 +1,5 @@
+/* #region Inputs */
+
 .input-label
 {
     font-family: inherit;
@@ -22,7 +24,7 @@
 
 .input-label input
 {
-    padding: 5px 0 5px 20px;
+    padding: 7px 0 7px 20px;
 
     color: #0d0020;
 
@@ -79,3 +81,59 @@
         scrollbar-base-color: rgba(82, 8, 125, 0.3);
     }
 }
+
+/* #endregion */
+
+/* #region Account Form */
+
+.account-form
+{
+    background-color: white;
+    margin: 0 auto;
+    max-width: 750px;
+
+    box-shadow: 0 1px 5px black;
+    border-radius: 10px;
+}
+
+.account-form h1
+{
+    font-size: 30px;
+    color: #fbfefb;
+
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1.3em 70px;
+    margin: 0;
+
+    background-color: #360068;
+    border-radius: 10px 10px 0 0;
+}
+
+.account-form .account-form-main-content
+{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    padding: 30px 70px 30px;
+}
+
+.account-form .account-form-main-content label
+{
+    margin: 0;
+}
+
+.account-form .account-form-main-content #terms,
+.account-form .account-form-main-content #terms+label
+{
+    margin-top: 10px;
+}
+
+.account-form .account-form-main-content button[type='submit']
+{
+    width: fit-content;
+    margin-top: 10px;
+}
+
+/* #endregion */

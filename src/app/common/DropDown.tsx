@@ -36,7 +36,7 @@ export default function DropDown(props: DropDownProps)
         <div { ...rest } className={ `dropdown ${className}` }>
             <button onClick={ () => setIsOpen(!isOpen) }>
                 <span className={ titleClassName }>{ title }</span>
-                { icon && <Icon type={ icon } style={ { marginLeft: '5px' } } /> }
+                { icon && <Icon type={ icon } alt='show' style={ { marginLeft: '5px' } } /> }
             </button>
             { isOpen &&
                 <ul className={ "dropdown-content" + (rightSided ? " right-sided" : "") }>

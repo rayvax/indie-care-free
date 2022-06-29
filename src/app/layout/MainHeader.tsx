@@ -1,38 +1,37 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import DropDown from "../common/DropDown";
 import SearchBar from "../common/SearchBar";
-import { browseAssetsPagePath, homePagePath, loginPagePath, profilePagePath, registerPagePath, uploadPagePath } from "../utils/paths/routerPaths";
+import { icfCategories, icfCopyrights } from "../utils/constants/icf-constants";
+import { logoPath, mainUserAvatarPath } from "../utils/paths/imagePaths";
+import { browseAssetsPagePath, homePagePath, loginPagePath, myProfilePagePath, profilePagePath, registerPagePath, uploadPagePath } from "../utils/paths/routerPaths";
 import { usePathname } from "../utils/react-router-dom";
 
-const assetOptions = [
-    { title: "3D", linkPath: browseAssetsPagePath },
-    { title: "2D", linkPath: browseAssetsPagePath },
-    { title: "Textures", linkPath: browseAssetsPagePath },
-    { title: "Sound Effects", linkPath: browseAssetsPagePath },
-    { title: "Music", linkPath: browseAssetsPagePath },
-    { title: "Scripts", linkPath: browseAssetsPagePath },
-];
-
-const copyrightsOptions = [
-    { title: "CC0", href: "https://creativecommons.org/publicdomain/zero/1.0/" },
-    { title: "CC-BY 4.0", href: "https://creativecommons.org/publicdomain/zero/1.0/" },
-    { title: "CC-BY-SA 4.0", href: "https://creativecommons.org/publicdomain/zero/1.0/" },
-    { title: "CC-BY 3.0", href: "https://creativecommons.org/publicdomain/zero/1.0/" },
-];
+interface MainHeaderProps extends React.HTMLAttributes<HTMLElement>
+{
+    username: string | null;
+    logoutUser: () => void;
+}
 
 
-export default function MainHeader({ className, ...rest }: React.HTMLAttributes<HTMLElement>)
+export default function MainHeader({ username, logoutUser, className, ...rest }: MainHeaderProps)
 {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const pathname = usePathname();
+    const navigate = useNavigate();
+
+    function handleSignOut()
+    {
+        logoutUser();
+        navigate(homePagePath);
+    }
 
     return (
         <header { ...rest } className={ `main-header ${className || ''}` }>
             <div className={ "logo" }>
                 <NavLink to={ homePagePath }>
                     <img
-                        src="./images/logo.webp"
+                        src={ logoPath }
                         alt="IndieCareFree logo"
                     />
                 </NavLink>
@@ -42,27 +41,32 @@ export default function MainHeader({ className, ...rest }: React.HTMLAttributes<
                     <li>
                         <DropDown
                             title={ "Assets" }
-                            titleClassName={ pathname === browseAssetsPagePath ? 'current-page-title' : '' }
+                            titleClassName={ pathname.startsWith(browseAssetsPagePath) ? 'current-page-title' : '' }
                             icon={ "down-arrow" }
                         >
-                            { assetOptions.map(opt =>
-                                <NavLink to={ opt.linkPath } key={ opt.title }>
-                                    { opt.title }
+                            { icfCategories.map(category =>
+                                <NavLink to={ browseAssetsPagePath } key={ category }>
+                                    { category }
                                 </NavLink>)
                             }
                         </DropDown>
                     </li>
                     <li>
-                        <NavLink to={ uploadPagePath }>Upload</NavLink>
+                        <NavLink
+                            to={ uploadPagePath }
+                            className={ pathname === uploadPagePath ? 'current-page-title' : '' }
+                        >
+                            Upload
+                        </NavLink>
                     </li>
                     <li>
                         <DropDown
                             title={ "Copyrights" }
                             icon={ "down-arrow" }
                         >
-                            { copyrightsOptions.map(opt =>
-                                <a href={ opt.href } key={ opt.title }>
-                                    { opt.title }
+                            { icfCopyrights.map(copyright =>
+                                <a href={ copyright.href } key={ copyright.title }>
+                                    { copyright.title }
                                 </a>)
                             }
                         </DropDown>
@@ -70,22 +74,22 @@ export default function MainHeader({ className, ...rest }: React.HTMLAttributes<
                 </ul>
             </nav>
             <div className={ "profile-area" }>
-                { isLoggedIn ? (
+                { username ? (
 
                     <div>
                         <img
-                            src={ "./images/avatars/main-user.webp" }
+                            src={ mainUserAvatarPath }
                             alt={ "avatar" }
                             className={ "avatar" }
                             onClick={ () => setIsLoggedIn(false) }
                         />
                         <DropDown
-                            title={ "Steve" }
+                            title={ username }
                             icon={ "down-arrow" }
                             rightSided
                         >
-                            <NavLink to={ profilePagePath }>Profile</NavLink>
-                            <NavLink to={ homePagePath } onClick={ () => setIsLoggedIn(false) }>Sign Out</NavLink>
+                            <NavLink to={ myProfilePagePath }>Profile</NavLink>
+                            <NavLink to={ homePagePath } onClick={ handleSignOut }>Sign Out</NavLink>
                         </DropDown>
                     </div>
                 ) : (
@@ -93,7 +97,6 @@ export default function MainHeader({ className, ...rest }: React.HTMLAttributes<
                         <li>
                             <NavLink
                                 to={ loginPagePath }
-                                onClick={ () => setIsLoggedIn(true) }
                             >
                                 Log in
                             </NavLink>
@@ -101,7 +104,6 @@ export default function MainHeader({ className, ...rest }: React.HTMLAttributes<
                         <li>
                             <NavLink
                                 to={ registerPagePath }
-                                onClick={ () => setIsLoggedIn(true) }
                             >
                                 Register
                             </NavLink>

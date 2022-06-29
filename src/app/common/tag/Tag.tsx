@@ -1,31 +1,36 @@
 import * as React from 'react';
+import TagItem from './TagItem';
 import TagList from './TagList';
 
-interface Props extends React.HTMLAttributes<HTMLLIElement>
+export interface TagProps extends React.HTMLAttributes<HTMLDivElement>
 {
     content: string;
     closable?: boolean;
     onCloseClick?: (tag: string) => void;
 }
 
-function Tag({ closable, content, onCloseClick, ...props }: Props) 
+function Tag({ closable, content, onCloseClick, ...props }: TagProps) 
 {
-    if (!onCloseClick)
-        return <li></li>;
+    function handleRemoveClick()
+    {
+        if (onCloseClick)
+            onCloseClick(content);
+    }
 
     return (
-        <li className="tag" { ...props }>
+        <div className="tag" { ...props }>
 
             { closable &&
-                <button type='button' title='remove' onClick={ () => onCloseClick(content) }>
-                    <img src="./icons/x-purple.svg" alt="remove" />
+                <button type='button' title='remove' onClick={ handleRemoveClick }>
+                    <img src="/icons/x-purple.svg" alt="remove" />
                 </button>
             }
             {/* сделать кнопку */ }
             { content }
-        </li>);
+        </div>);
 }
 
 Tag.List = TagList;
+Tag.Item = TagItem;
 
 export default Tag;

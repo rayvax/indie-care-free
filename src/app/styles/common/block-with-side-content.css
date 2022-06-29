@@ -5,14 +5,7 @@
 
 .side-content
 {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 42px;
-
-    padding: 100px 70px 65px;
-
+    padding: 40px 80px 60px;
 
     background-color: #210052;
 }
@@ -64,9 +57,18 @@
     margin: 0px;
 }
 
-.block-with-side-content .side-content h2 strong
+.block-with-side-content .side-content p.emphasis-paragraph
 {
-    font-size: 26px;
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 40px;
+}
+
+.block-with-side-content .side-content p.emphasis-paragraph.extra-emphasis
+{
+    font-size: 40px;
+    margin-bottom: 20px;
 }
 
 .block-with-side-content .side-content p
@@ -75,7 +77,12 @@
     font-weight: lighter;
 }
 
+.block-with-side-content .side-content p:not(:last-child):not(.emphasis-paragraph)
+{
+    margin-bottom: 20px;
+}
+
 .block-with-side-content .side-content button
 {
-    margin-top: auto;
+    margin-top: 20px;
 }

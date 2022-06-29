@@ -63,8 +63,7 @@ header
     margin: auto 0;
 }
 
-.main-header nav .current-page-title,
-.main-header nav a.active
+.main-header nav .current-page-title
 {
     color: #ff3b89;
 }

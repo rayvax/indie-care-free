@@ -11,8 +11,8 @@ function ICFTextInput({ label, ...props }: LabeledInputProps)
         <label className='input-label'>
             { label }
             <input
-                { ...props }
                 type='text'
+                { ...props }
             />
         </label>);
 }

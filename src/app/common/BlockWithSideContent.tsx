@@ -8,7 +8,7 @@ interface BlockWithSideContentProps extends React.HTMLAttributes<HTMLElement>
     contentSide?: 'right' | 'left';
 }
 
-function BlockWithSideContentProps(props: BlockWithSideContentProps) 
+function BlockWithSideContent(props: BlockWithSideContentProps) 
 {
     const { sideImgSrc, sideImgAlt, contentProportion, contentSide = 'left', className, children, ...otherProps } = props;
 
@@ -22,4 +22,4 @@ function BlockWithSideContentProps(props: BlockWithSideContentProps)
     );
 }
 
-export default BlockWithSideContentProps;
+export default BlockWithSideContent;

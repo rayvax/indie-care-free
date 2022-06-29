@@ -6,3 +6,4 @@ export const uploadPagePath = '/upload';
 export const loginPagePath = '/login';
 export const registerPagePath = '/register';
 export const profilePagePath = '/profile';
+export const myProfilePagePath = '/profile/my';

@@ -1,6 +1,37 @@
-import { getImagePath } from "../paths/imagePaths";
+import { categoriesPath, getImagePath } from "../paths/imagePaths";
 
-export const icfCategories = ['3D', '2D', 'Music', 'Sounds', 'Scripts', 'Textures',];
+export const icfCategories = [
+    {
+        title: '3D',
+        name: '3d',
+        imagePath: `${categoriesPath}/3d.png`
+    },
+    {
+        title: '2D',
+        name: '2d',
+        imagePath: `${categoriesPath}/2d.png`
+    },
+    {
+        title: 'Music',
+        name: 'music',
+        imagePath: `${categoriesPath}/music.png`
+    },
+    {
+        title: 'Sounds',
+        name: 'sounds',
+        imagePath: `${categoriesPath}/sounds.png`
+    },
+    {
+        title: 'Scripts',
+        name: 'scripts',
+        imagePath: `${categoriesPath}/scripts.png`
+    },
+    {
+        title: 'Textures',
+        name: 'textures',
+        imagePath: `${categoriesPath}/textures.png`
+    },
+];
 export const icfCopyrights = [
     {
         title: "CC0",

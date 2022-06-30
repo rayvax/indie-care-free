@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { getIconPath } from '../../../utils/paths/imagePaths';
 
 interface AssetStatisticProps extends React.HTMLAttributes<HTMLElement>
 {
@@ -43,7 +44,7 @@ function AssetStatistic({ rating, ratingsCount: initialRatingsCount, initiallyRa
                 className={ isFavourited ? 'favourited' : '' }
             >
                 <svg role='image' width="16" height="16" viewBox="0 0 60 53">
-                    <use href={ `/icons/flexible icons/heart.svg#icon` } ></use>
+                    <use href={ getIconPath('flexible icons/heart.svg#icon') } ></use>
                 </svg>
             </button>
         </div>
@@ -66,7 +67,7 @@ function initStars(rating: number, starCount: number, active: boolean)
     {
         stars.push(
             <svg role='image' width="16" height="16" viewBox="0 0 66 63">
-                <use href='/icons/flexible icons/full-star.svg#icon' ></use>
+                <use href={ getIconPath('flexible icons/full-star.svg#icon') } ></use>
             </svg>);
     }
 
@@ -83,7 +84,7 @@ function initStars(rating: number, starCount: number, active: boolean)
     }
     stars.push(
         <svg role='image' width="16" height="16" viewBox="0 0 66 63">
-            <use href={ `/icons/flexible icons/${centerStarType}.svg#icon` } ></use>
+            <use href={ getIconPath(`flexible icons/${centerStarType}.svg#icon`) } ></use>
         </svg>
     );
 
@@ -93,7 +94,7 @@ function initStars(rating: number, starCount: number, active: boolean)
     {
         stars.push(
             <svg role='image' width="16" height="16" viewBox="0 0 66 63">
-                <use href={ `/icons/flexible icons/empty-star.svg#icon` } ></use>
+                <use href={ getIconPath('flexible icons/empty-star.svg#icon') } ></use>
             </svg>);
     }
 

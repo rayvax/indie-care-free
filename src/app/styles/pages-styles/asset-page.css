@@ -110,7 +110,7 @@
 }
 
 
-.comments-section form
+.comments-section .user-comment
 {
     border-radius: 0 0 10px 10px;
     border-left: rgba(144, 127, 168, 1) solid;
@@ -120,14 +120,21 @@
     padding: 20px 30px 30px;
 }
 
-.comments-section form label
+.comments-section .user-comment label
 {
     margin: 0;
 }
 
-.comments-section form button[type='submit']
+.comments-section .user-comment button[type='submit']
 {
     margin-top: 20px;
+}
+
+.user-comment .unregistered
+{
+
+    text-align: center;
+    vertical-align: middle;
 }
 
 /* #endregion */

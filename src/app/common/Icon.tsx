@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { getIconPath } from '../utils/paths/imagePaths';
 
 export type IconType = 'pencil' | 'tick-pink' | 'tick-purple' | 'x-pink' | 'x-purple' | 'search'
     | 'down-arrow' | 'left-purple-arrow' | 'right-purple-arrow' | 'left-white-arrow' | 'right-white-arrow'
@@ -18,7 +19,7 @@ function Icon({ type, alt, ...props }: IconProps)
         // через svg можно менять цвет
         <img
             { ...props }
-            src={ `/icons/${iconFileName}` }
+            src={ getIconPath(iconFileName) }
             alt={ alt || type }
         />
     );

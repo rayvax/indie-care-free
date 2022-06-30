@@ -5,6 +5,7 @@ import ICFButton from '../../common/buttons/ICFButton';
 import Card from '../../common/card/Card';
 import Carousel from '../../common/Carousel';
 import { mockProfilePreviews } from '../../models/user';
+import { icfCategories } from '../../utils/constants/icf-constants';
 import { getImagePath } from '../../utils/paths/imagePaths';
 import { assetPagePath, browseAssetsPagePath, newbiePagePath, profilePagePath } from '../../utils/paths/routerPaths';
 
@@ -12,9 +13,6 @@ const popularThisWeek = [
     "Mighty 2d assets budle", 'Pixelart items pack',
     "Warrior King", "Fantasy Chests",
     'Finji assets', 'Stone Tower Game assets',
-];
-const categories = [
-    '3d', '2d', 'music', 'sounds', 'scripts', 'textures',
 ];
 
 function HomePage()
@@ -31,7 +29,7 @@ function HomePage()
                     (
                         <NavLink to={ assetPagePath('random-id') } key={ asset } className='nav-link'>
                             <img
-                                src={ `/images/assets/Popular this week/${asset}.webp` }
+                                src={ getImagePath(`assets/Popular this week/${asset}.webp`) }
                                 alt={ asset }
                             />
                         </NavLink>
@@ -42,11 +40,11 @@ function HomePage()
             <div>
                 <h2>Browse by&nbsp;categories</h2>
                 <Carousel itemsInPage={ 4 } itemHeight={ '250px' }>
-                    { categories.map(category =>
+                    { icfCategories.map(category =>
                     (
-                        <NavLink to={ browseAssetsPagePath } key={ category }>
+                        <NavLink to={ browseAssetsPagePath } key={ category.name }>
                             <Card>
-                                <Card.Image src={ `/images/categories/${category}.png` } alt={ `${category}` } />
+                                <Card.Image src={ category.imagePath } alt={ category.name } />
                             </Card>
                         </NavLink>
                     )) }

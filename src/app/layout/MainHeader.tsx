@@ -45,8 +45,8 @@ export default function MainHeader({ username, logoutUser, className, ...rest }:
                             icon={ "down-arrow" }
                         >
                             { icfCategories.map(category =>
-                                <NavLink to={ browseAssetsPagePath } key={ category }>
-                                    { category }
+                                <NavLink to={ browseAssetsPagePath } key={ category.title }>
+                                    { category.title }
                                 </NavLink>)
                             }
                         </DropDown>

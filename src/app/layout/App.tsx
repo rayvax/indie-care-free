@@ -21,11 +21,6 @@ function App()
     setUsername(newUsername);
   }
 
-  function logoutUser()
-  {
-    setUsername(null);
-  }
-
   return (
     <BrowserRouter>
       <MainHeader username={ username } logoutUser={ () => setUsername(null) } style={ { marginBottom: '1.5em' } } />
@@ -33,7 +28,7 @@ function App()
         <Route path={ homePagePath } element={ <HomePage /> } />
         <Route path={ newbiePagePath } element={ <NewbiePage /> } />
         <Route path={ browseAssetsPagePath } element={ <BrowseAssetsPage /> } />
-        <Route path={ assetPagePath(':assetId') } element={ <AssetPage /> } />
+        <Route path={ assetPagePath(':assetId') } element={ <AssetPage username={ username } /> } />
         <Route path={ uploadPagePath } element={ <UploadAssetPage /> } />
         <Route path={ loginPagePath } element={ <LogInPage setUser={ setUser } /> } />
         <Route path={ registerPagePath } element={ <RegisterPage setUser={ setUser } /> } />

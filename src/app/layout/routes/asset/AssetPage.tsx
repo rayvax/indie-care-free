@@ -1,15 +1,13 @@
-import React, { MouseEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, MouseEvent, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import ICFButton from '../../../common/buttons/ICFButton';
 import Carousel from '../../../common/Carousel';
 import ICFTextArea from '../../../common/forms/ICFTextArea';
-import TabbedContent from '../../../common/tabbed-content/TabbedContent';
-import TabbedContentGroup from '../../../common/tabbed-content/TabbedContentGroup';
-import TabbedContentPanel from '../../../common/tabbed-content/TabbedContentPanel';
-import TabbedContentTab from '../../../common/tabbed-content/TabbedContentTab';
 import Tag from '../../../common/tag/Tag';
-import { getAvatarPath, getRandomAssetImagePath } from '../../../utils/paths/imagePaths';
-import { profilePagePath } from '../../../utils/paths/routerPaths';
+import { Comment } from '../../../models/comment';
+import { getRandomProfilePreviews } from '../../../models/user';
+import { getAvatarPath, getRandomAssetImagePath, mainUserAvatarPath } from '../../../utils/paths/imagePaths';
+import { loginPagePath, profilePagePath, registerPagePath } from '../../../utils/paths/routerPaths';
 import AssetStatistic from './AssetStatistic';
 
 const screenshotCount = 6;
@@ -21,14 +19,51 @@ for (let i = 0; i < screenshotCount; i++)
 
 const tags = ['gnome', 'forest', 'fantasy', 'pixelart', 'egypt', 'battle'];
 
-function AssetPage()
+interface AssetPageProps
+{
+    username: string | null;
+}
+
+function AssetPage({ username }: AssetPageProps)
 {
     const [activeTab, setActiveTab] = useState(1);
+    const [userComment, setUserComment] = useState('');
+    const [comments, setComments] = useState<Comment[]>([]);
+
+    useEffect(() =>
+    {
+        const profilePreviews = getRandomProfilePreviews(2);
+        const mockMessages = [
+            'That\u0027s cool!',
+            `Definitely using this epic music. Great Determination is\xa0planned to\xa0be\xa0used for a\xa0character select/base menu for a\xa0Tactical FE-inspired RPG, while a\xa0couple of\xa0the other songs work well as\xa0both theme music and boss music.^^`
+        ];
+
+        setComments(profilePreviews.map((profile, i) =>
+        ({
+            author: profile,
+            message: mockMessages[i]
+        })));
+    }, []);
 
     function handleTabClick(event: MouseEvent, tabNumber: number)
     {
         event.preventDefault();
         setActiveTab(tabNumber);
+    }
+
+    function handleCommentSubmit(event: FormEvent)
+    {
+        event.preventDefault();
+
+        setComments([...comments, {
+            author: {
+                name: username!,
+                avatar: mainUserAvatarPath
+            },
+            message: userComment
+        }]);
+
+        setUserComment('');
     }
 
     return (
@@ -76,11 +111,11 @@ function AssetPage()
                         aria-labelledby="tab1"
                         hidden={ activeTab !== 1 }
                     >
-                        <p>Your little horde of&nbsp;dwarves is&nbsp;ready to&nbsp;lay into the neighboring tribes. The rats stealing the cook&rsquo;s prize cook pot was the last straw&nbsp;&mdash; now they&rsquo;re out for revenge... and a&nbsp;delicious rat-tail stew! But the dwarves need some leadership&nbsp;&mdash; are you up&nbsp;to&nbsp;it?
+                        <p>Your little horde of\xa0dwarves is\xa0ready to\xa0lay into the neighboring tribes. The rats stealing the cook&rsquo;s prize cook pot was the last straw\xa0&mdash; now they&rsquo;re out for revenge... and a\xa0delicious rat-tail stew! But the dwarves need some leadership\xa0&mdash; are you up\xa0to\xa0it?
                         </p>
-                        <p>In&nbsp;this pixel game, you&rsquo;ll accompany your mob of&nbsp;dwarves on&nbsp;a&nbsp;host of&nbsp;missions. Sometimes just to&nbsp;collect wood, berries, or&nbsp;other resources; at&nbsp;other times you&rsquo;ll prove your derring-do on&nbsp;dangerous rescue missions to&nbsp;bolster your troops.
+                        <p>In\xa0this pixel game, you&rsquo;ll accompany your mob of\xa0dwarves on\xa0a\xa0host of\xa0missions. Sometimes just to\xa0collect wood, berries, or\xa0other resources; at\xa0other times you&rsquo;ll prove your derring-do on\xa0dangerous rescue missions to\xa0bolster your troops.
                         </p>
-                        <p>Dark Gnome is&nbsp;a&nbsp;mix of&nbsp;round-based strategy and roleplaying genres. Charming retro 2D&nbsp;graphics bring back the good &lsquo;ole days of&nbsp;turn-based battle games. Captivating PvE battles provide non-stop suspense, but if&nbsp;that isn&rsquo;t enough spine-tingling action for you, you can also face off against your fellow players in&nbsp;PvP mode.
+                        <p>Dark Gnome is\xa0a\xa0mix of\xa0round-based strategy and roleplaying genres. Charming retro 2D\xa0graphics bring back the good &lsquo;ole days of\xa0turn-based battle games. Captivating PvE battles provide non-stop suspense, but if\xa0that isn&rsquo;t enough spine-tingling action for you, you can also face off against your fellow players in\xa0PvP mode.
                         </p>
                     </section>
                     <section
@@ -109,33 +144,42 @@ function AssetPage()
                 <section className='comments-section'>
                     <h2>Comments</h2>
                     <ol className='comments-list'>
-                        <li>
-                            <NavLink to={ profilePagePath } className='author'>
-                                <div>
-                                    <img src={ getAvatarPath(11) } alt='avatar' className='circled' />
+                        { comments.map(comment =>
+                        (
+                            <li key={ `${comment.author.name}'s comment` }>
+                                <NavLink to={ profilePagePath } className='author'>
+                                    <div>
+                                        <img src={ comment.author.avatar } alt='avatar' className='circled' />
+                                    </div>
+                                    <cite>{ comment.author.name }</cite>
+                                </NavLink>
+                                <div className='message'>
+                                    <p>{ comment.message }</p>
                                 </div>
-                                <cite>Heath Ledger</cite>
-                            </NavLink>
-                            <div className='message'>
-                                <p>That&rsquo;s cool!</p>
-                            </div>
-                        </li>
-                        <li>
-                            <NavLink to={ profilePagePath } className='author'>
-                                <div>
-                                    <img src={ getAvatarPath(10) } alt='avatar' className='circled' />
-                                </div>
-                                <cite>Micky</cite>
-                            </NavLink>
-                            <div className='message'>
-                                <p>Definitely using this epic music. Great Determination is&nbsp;planned to&nbsp;be&nbsp;used for a&nbsp;character select/base menu for a&nbsp;Tactical FE-inspired RPG, while a&nbsp;couple of&nbsp;the other songs work well as&nbsp;both theme music and boss music.^^</p>
-                            </div>
-                        </li>
+                            </li>
+                        )) }
                     </ol>
-                    <form>
-                        <ICFTextArea />
-                        <ICFButton type='submit' content='Add comment' />
-                    </form>
+                    <div className='user-comment'>
+                        { username ? (
+                            <form onSubmit={ handleCommentSubmit }>
+                                <ICFTextArea
+                                    name='comment'
+                                    id='user-comment'
+                                    value={ userComment }
+                                    onChange={ (event: ChangeEvent<HTMLTextAreaElement>) => setUserComment(event.target.value) }
+                                />
+                                <ICFButton
+                                    type='submit'
+                                    content='Add comment'
+                                    disabled={ userComment.trim().length <= 0 }
+                                />
+                            </form>
+                        ) : (
+                            <div className='unregistered'>
+                                Please <NavLink to={ loginPagePath }>log in</NavLink> to&nbsp;be&nbsp;able leave the comment
+                            </div>
+                        ) }
+                    </div>
                 </section>
 
             </div>

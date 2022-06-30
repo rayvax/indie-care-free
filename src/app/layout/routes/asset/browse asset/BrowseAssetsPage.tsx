@@ -85,12 +85,11 @@ function BrowseAssetsPage()
                                     <ul>
                                         { icfCategories.map(category =>
                                         (
-                                            <li>
+                                            <li key={ category.name }>
                                                 <ICFCheckbox
-                                                    key={ category }
-                                                    label={ category }
-                                                    name={ category }
-                                                    id={ category + ' checkbox' }
+                                                    label={ category.title }
+                                                    name={ category.name }
+                                                    id={ category.name + ' checkbox' }
                                                 />
                                             </li>
                                         )) }

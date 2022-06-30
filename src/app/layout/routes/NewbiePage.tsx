@@ -51,9 +51,9 @@ function NewbiePage()
                 <Carousel itemsInPage={ 4 } itemHeight={ '250px' }>
                     { icfCategories.map(category =>
                     (
-                        <NavLink to={ browseAssetsPagePath } key={ category }>
+                        <NavLink to={ browseAssetsPagePath } key={ category.title }>
                             <Card>
-                                <Card.Image src={ `/images/categories/${category}.png` } alt={ `${category}` } />
+                                <Card.Image src={ category.imagePath } alt={ category.title } />
                             </Card>
                         </NavLink>
                     )) }

@@ -48,11 +48,11 @@ function UploadAssetPage()
                     <ul className='categories-list'>
                         { icfCategories.map(category =>
                         (
-                            <li key={ category } >
+                            <li key={ category.name } >
                                 <ICFCheckbox
-                                    id={ category }
-                                    name={ category }
-                                    label={ category }
+                                    id={ category.name }
+                                    name={ category.name }
+                                    label={ category.title }
                                 />
                             </li>
                         )) }

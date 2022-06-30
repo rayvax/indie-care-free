@@ -1,5 +1,6 @@
 import { shuffle } from "../utils/array-utils";
 import { getAvatarPath } from "../utils/paths/imagePaths";
+import { getRandomIntInclusive } from "../utils/random-utils";
 import { AssetPreview } from "./asset";
 
 export interface Profile
@@ -54,11 +55,13 @@ export const mockProfilePreviews: ProfilePreview[] = mockUsernames.map((username
     };
 });
 
-export const getRandomProfilePreviews = () =>
+export function getRandomProfilePreviews(): ProfilePreview[];
+export function getRandomProfilePreviews(count: number): ProfilePreview[];
+export function getRandomProfilePreviews(count?: number): ProfilePreview[]
 {
+    if (!count)
+        count = getRandomIntInclusive(1, mockProfilePreviews.length - 1);
+
     shuffle(mockProfilePreviews);
-
-    const randomEnd = Math.floor(Math.random() * mockProfilePreviews.length);
-
-    return mockProfilePreviews.slice(0, randomEnd);
+    return mockProfilePreviews.slice(0, count);
 };

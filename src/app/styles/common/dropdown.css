@@ -17,6 +17,7 @@
     flex-direction: column;
 
     padding: 1em;
+    margin: 0;
 
     box-shadow: 0 1px 2px #0d0020;
     background-color: #360066;
@@ -31,7 +32,7 @@
     right: 0;
 }
 
-.dropdown > button
+.dropdown>button
 {
     font: inherit;
     color: inherit;
@@ -53,7 +54,7 @@ ul.dropdown-content a
     cursor: pointer;
 }
 
-ul.dropdown-content > *:not(:last-child)
+ul.dropdown-content>*:not(:last-child)
 {
     margin-bottom: 1.3em;
 }

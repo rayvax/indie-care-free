@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import DropDown from "../common/DropDown";
 import SearchBar from "../common/SearchBar";
 import { icfCategories, icfCopyrights } from "../utils/constants/icf-constants";
 import { logoPath, mainUserAvatarPath } from "../utils/paths/imagePaths";
-import { browseAssetsPagePath, homePagePath, loginPagePath, myProfilePagePath, profilePagePath, registerPagePath, uploadPagePath } from "../utils/paths/routerPaths";
+import { browseAssetsPagePath, homePagePath, loginPagePath, myProfilePagePath, registerPagePath, uploadPagePath } from "../utils/paths/routerPaths";
 import { usePathname } from "../utils/react-router-dom";
 
 interface MainHeaderProps extends React.HTMLAttributes<HTMLElement>
@@ -16,7 +16,6 @@ interface MainHeaderProps extends React.HTMLAttributes<HTMLElement>
 
 export default function MainHeader({ username, logoutUser, className, ...rest }: MainHeaderProps)
 {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const pathname = usePathname();
     const navigate = useNavigate();
 
@@ -26,6 +25,23 @@ export default function MainHeader({ username, logoutUser, className, ...rest }:
         navigate(homePagePath);
     }
 
+    //only logo header
+    if (pathname === loginPagePath || pathname === registerPagePath)
+    {
+        return (
+            <header { ...rest } className={ `logo-header ${className || ''}` }>
+                <div className={ "logo" }>
+                    <NavLink to={ homePagePath }>
+                        <img
+                            src={ logoPath }
+                            alt="IndieCareFree logo"
+                        />
+                    </NavLink>
+                </div>
+            </header>);
+    }
+
+    //normal header
     return (
         <header { ...rest } className={ `main-header ${className || ''}` }>
             <div className={ "logo" }>
@@ -75,13 +91,11 @@ export default function MainHeader({ username, logoutUser, className, ...rest }:
             </nav>
             <div className={ "profile-area" }>
                 { username ? (
-
                     <div>
                         <img
                             src={ mainUserAvatarPath }
                             alt={ "avatar" }
-                            className={ "avatar" }
-                            onClick={ () => setIsLoggedIn(false) }
+                            className={ "avatar circled" }
                         />
                         <DropDown
                             title={ username }

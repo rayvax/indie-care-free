@@ -8,23 +8,18 @@ header
     padding-bottom: 1em;
 
     font-size: 24px;
-}
 
-.main-header
-{
     position: relative;
     display: grid;
 
     grid-template-areas:
         "logo navigation profile"
         "searchbar searchbar searchbar";
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 1.1fr 2fr auto;
 }
 
-
-.main-header::before
-
 /* Background */
+header::before
 {
     content: "";
 
@@ -38,38 +33,57 @@ header
     background-color: #210052;
 }
 
-.main-header .logo
+header a:visited
+{
+    color: currentColor;
+}
+
+.logo>a
+{
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+}
+
+.logo>a>img
+{
+    width: 100%;
+}
+
+header .logo
 {
     grid-area: logo;
     margin: auto 0;
 }
 
-
-.main-header .profile-area
+header .profile-area
 {
     grid-area: profile;
     margin: auto 0;
 }
 
-.main-header .search-bar
+header .search-bar
 {
     grid-area: searchbar;
 }
 
 /*#region Main navigation */
-.main-header nav
+header nav
 {
     grid-area: navigation;
     margin: auto 0;
 }
 
-.main-header nav .current-page-title
+header nav .current-page-title
 {
     color: #ff3b89;
 }
 
 
-.main-header nav ul
+header nav ul
 {
     display: flex;
     flex-direction: row;
@@ -77,12 +91,12 @@ header
     list-style-type: none;
 }
 
-.main-header nav ul>li
+header nav ul>li
 {
     margin-right: 2.2em;
 }
 
-.main-header nav ul li>a
+header nav ul li>a
 {
     font: inherit;
     text-decoration: none;
@@ -95,14 +109,14 @@ header
 /*#endregion */
 
 /*#region Header profile area */
-.main-header .profile-area
+header .profile-area
 {
     display: flex;
     flex-direction: row;
     margin-left: auto;
 }
 
-.main-header .profile-area .avatar
+header .profile-area .avatar
 {
     width: 35px;
     height: 35px;
@@ -133,3 +147,30 @@ header
 }
 
 /*#endregion */
+
+/* #region Logo Header */
+
+header.logo-header
+{
+    grid-template-areas: 'logo logo logo';
+
+    min-height: 5em;
+}
+
+header.logo-header .logo
+{
+    margin: 0 auto;
+    width: 750px;
+}
+
+header.logo-header .logo>a
+{
+    justify-content: center;
+}
+
+header.logo-header .logo>a>img
+{
+    width: 80%;
+}
+
+/* #endregion */
